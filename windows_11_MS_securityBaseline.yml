@@ -1,0 +1,56 @@
+- name: Configure Security Baseline for Windows 10
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Disable SMBv1
+      win_reg_stat:
+        path: HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters
+        name: SMB1
+        data: 0
+        type: dword
+    - name: Enable Windows Defender Exploit Guard - Attack Surface Reduction (ASR)
+      win_security_policy:
+        option: "EnableASR"
+        state: "Enabled"
+    - name: Configure Windows Defender Exploit Guard - ASR Rules
+      win_security_policy:
+        option: "ASR"
+        state: "Enabled"
+        settings:
+          - "Block Office communication application from creating child processes"
+          - "Block Office applications from injecting into process"
+          - "Block Adobe Reader from creating child processes"
+          - "Block persistence through WMI event subscription"
+          - "Block persistence through BITS jobs"
+          - "Block credential stealing from the Windows local security authority subsystem (lsass.exe)"
+    - name: Configure Windows Firewall
+      community.windows.win_firewall:
+        state: "present"
+        default_inbound_action: "block"
+        default_outbound_action: "allow"
+        rules:
+          - name: "Allow Ping"
+            description: "Allow incoming ICMP echo requests"
+            protocol: "icmpv4"
+            remote_address: "Any"
+            direction: "in"
+            action: "allow"
+          - name: "Allow RDP"
+            description: "Allow incoming RDP traffic"
+            protocol: "tcp"
+            local_port: "3389"
+            remote_address: "Any"
+            direction: "in"
+            action: "allow"
+    - name: Configure Internet Explorer Enhanced Security Configuration (IE ESC)
+      win_feature:
+        name: "IE-ESC"
+        state: "disabled"
+    - name: Configure Windows Defender Firewall - Block Rules
+      win_security_policy:
+        option: "FW_BlockRules"
+        state: "Enabled"
+        settings:
+          - "Block inbound connections to the following network protocols: SMB"
+          - "Block inbound connections to the following network protocols: RDP"
+          - "Block inbound connections to the following network protocols: WMI"
