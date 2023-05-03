@@ -35,11 +35,11 @@ build {
   provisioner "powershell" {
     elevated_user     = build.User
     elevated_password = build.Password
-    script            = "./openssh.ps1"
+    script            = "setup/openssh.ps1"
   }
 
   provisioner "ansible" {
-    playbook_file = "./windows_11_MS_securityBaseline.yml"
+    playbook_file = "playbooks/windows/11/windows_11_STIG.yml"
     user          = build.User
     use_proxy     = false
     ansible_ssh_extra_args  = ["-o IdentitiesOnly=yes", "-o StrictHostKeyChecking=no", "-o UserKnownHostsFile=/dev/null"]
