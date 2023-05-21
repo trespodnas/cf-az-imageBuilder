@@ -1,0 +1,10 @@
+- name: Create windows 11 STIG image w/fslogix agent installed.
+  hosts: all
+  gather_facts: false
+  roles:
+    - ansible-role-win-fslogix
+  tasks:
+    # - include: windows/10_11/windows_11_STIG.yml
+    - name: Include task list in play
+      ansible.builtin.include_tasks:
+        file: windows/10_11/windows_11_STIG.yml
