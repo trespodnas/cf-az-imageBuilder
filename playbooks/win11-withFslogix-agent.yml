@@ -4,7 +4,9 @@
   roles:
     - ansible-role-win-fslogix
   tasks:
-    # - include: windows/10_11/windows_11_STIG.yml
-    - name: Include task list in play
+    - name: Windows updates
       ansible.builtin.include_tasks:
-        file: windows/10_11/windows_11_STIG.yml
+        file: windows/general/windows-updates.yml
+    - name: Kick off windows 11 STIG
+      ansible.builtin.include_tasks:
+        file: windows/11/windows_11_STIG.yml
