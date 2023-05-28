@@ -10,13 +10,11 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
 - script: |
     sudo apt install packer
     pip3 install ansible
     echo "Packer path:" `which packer`
     echo "Ansible path:" `which ansible`
     echo "Ansible playbook path:" `which ansible-playbook`
+    ls -la $(Build.SourcesDirectory)
   displayName: 'Install cmd line tools/requirements'
