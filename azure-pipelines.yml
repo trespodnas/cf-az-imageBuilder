@@ -16,7 +16,7 @@ steps:
 - script: |
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
-    apt-install -y python3
-    apt-install -y packer
+    which python
     pip3 install ansible
+    which packer
   displayName: 'Run a multi-line script'
