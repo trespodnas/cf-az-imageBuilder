@@ -14,9 +14,7 @@ steps:
   displayName: 'Run a one-line script'
 
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-    which python
+    apt install packer
     pip3 install ansible
     which packer
-  displayName: 'Run a multi-line script'
+  displayName: 'Install cmd line tools/requirements'
