@@ -20,7 +20,7 @@ steps:
 - task: AzureCLI@2
   displayName: "Initialize and build windows-11 STIG image with fsLogix agent installed"
   inputs:
-                  azureSubscription: ${{ parameters.avdSubServiceConnection }}
+                  azureSubscription: cloudfitonline_avd_deployer
                   scriptType: 'bash'
                   scriptLocation: 'inlineScript'
                   inlineScript: |
