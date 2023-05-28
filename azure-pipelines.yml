@@ -14,7 +14,7 @@ steps:
   displayName: 'Run a one-line script'
 
 - script: |
-    apt install packer
+    sudo apt install packer
     pip3 install ansible
     which packer
   displayName: 'Install cmd line tools/requirements'
