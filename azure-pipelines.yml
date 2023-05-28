@@ -18,4 +18,5 @@ steps:
     pip3 install ansible
     echo "Packer path:" `which packer`
     echo "Ansible path:" `which ansible`
+    echo "Ansible playbook path:" `which ansible-playbook`
   displayName: 'Install cmd line tools/requirements'
