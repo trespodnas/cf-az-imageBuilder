@@ -1,0 +1,8 @@
+build_resource_group_name = "rg-avd-packer-builds"
+image_offer = "office-365"
+image_publisher = "microsoftwindowsdesktop"
+image_sku = "win11-21h2-avd-m365"
+managed_image_name = "myPackerImage"
+managed_image_resource_group_name = "rg-avd-packer-builds"
+os_type = "Windows"
+vm_size = "Standard_B2ms"
