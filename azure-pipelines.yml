@@ -25,5 +25,5 @@ steps:
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: |
-      chdir $(Build.SourcesDirectory)/tf/ \
+      cd $(Build.SourcesDirectory)/tf/ \
       ls . \
