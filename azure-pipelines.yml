@@ -13,9 +13,10 @@ steps:
 - script: |
     sudo apt install packer
     pip3 install ansible
-    echo "Packer path:" `which packer`
-    echo "Ansible path:" `which ansible`
-    echo "Ansible playbook path:" `which ansible-playbook`
+    echo "Packer path:" `which packer` || echo "Packer not installed"
+    echo "Ansible path:" `which ansible` || echo "Ansible not installed"
+    echo "Ansible playbook path:" `which ansible-playbook` || echo "Ansible playbook not installed"
+    which terraform
     ls -la $(Build.SourcesDirectory)
   displayName: "Install cmd line tools/requirements"
 - task: AzureCLI@2
