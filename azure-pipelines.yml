@@ -23,6 +23,8 @@ steps:
   inputs:
     azureSubscription: ${{ parameters.avdSubServiceConnection }}
     scriptType: 'bash'
+    addSpnToEnvironment: true
+    useGlobalConfig: true
     scriptLocation: 'inlineScript'
     inlineScript: |
       sudo terraform -chdir=$(Build.SourcesDirectory)/tf/ init;\
