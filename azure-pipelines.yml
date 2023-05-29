@@ -13,17 +13,16 @@ steps:
 - script: |
     sudo apt install packer
     pip3 install ansible
-    echo "Packer path:" `which packer` || echo "Packer not installed"
-    echo "Ansible path:" `which ansible` || echo "Ansible not installed"
-    echo "Ansible playbook path:" `which ansible-playbook` || echo "Ansible playbook not installed"
-    which terraform
-    ls -la $(Build.SourcesDirectory)
+    echo "Packer path:" `which packer`
+    echo "Ansible path:" `which ansible`
+    echo "Ansible playbook path:" `which ansible-playbook`
+    echo "Terraform path:" `which terraform`
   displayName: "Install cmd line tools/requirements"
 - task: AzureCLI@2
-  displayName: "Initialize and build windows-11 STIG image with fsLogix agent installed"
+  displayName: "Initialize terraform for gallery container creation"
   inputs:
                   azureSubscription: ${{ parameters.avdSubServiceConnection }}
                   scriptType: 'bash'
                   scriptLocation: 'inlineScript'
                   inlineScript: |
-                    ls -la $(Build.SourcesDirectory)\
+                    terraform init $(Build.SourcesDirectory)\tf\ .
