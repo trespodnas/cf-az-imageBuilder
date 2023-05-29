@@ -25,6 +25,6 @@ steps:
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: |
-      sudo terraform -chdir $(Build.SourcesDirectory)/tf/ init;\
+      sudo terraform -chdir=$(Build.SourcesDirectory)/tf/ init;\
       ls $(Build.SourcesDirectory)/tf/ ;\
 
