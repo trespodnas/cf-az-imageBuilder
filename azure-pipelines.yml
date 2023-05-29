@@ -17,7 +17,7 @@ steps:
     echo "Ansible path:" `which ansible`
     echo "Ansible playbook path:" `which ansible-playbook`
     echo "Terraform path:" `which terraform`
-    chmod 700 `which terraform`
+    sudo chmod 700 `which terraform`
   displayName: "Install cmd line tools/requirements"
 - task: AzureCLI@2
   displayName: "Initialize terraform for gallery container creation"
