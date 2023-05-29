@@ -21,9 +21,9 @@ steps:
 - task: AzureCLI@2
   displayName: "Initialize terraform for gallery container creation"
   inputs:
-                  azureSubscription: ${{ parameters.avdSubServiceConnection }}
-                  scriptType: 'bash'
-                  scriptLocation: 'inlineScript'
-                  inlineScript: |
-                    cd $(Build.SourcesDirectory)/tf/.  \
-                    terraform init \
+    azureSubscription: ${{ parameters.avdSubServiceConnection }}
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      cd $(Build.SourcesDirectory)/tf/.  \
+      terraform init \
