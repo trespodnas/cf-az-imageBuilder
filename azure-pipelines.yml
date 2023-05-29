@@ -26,4 +26,4 @@ steps:
                   scriptLocation: 'inlineScript'
                   inlineScript: |
                     ls $(Build.SourcesDirectory) \
-                    terraform init $(Build.SourcesDirectory)/tf/ . \
+                    echo "exist?" `which terraform` \
