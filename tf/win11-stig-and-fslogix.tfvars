@@ -1,0 +1,8 @@
+name = "win11-stig-and-fslogix"
+resource_group_name = "cfoavd-rg-cfsgaia-prod"
+gallery_name = "cloudfitonline_image_gallery"
+location = "USGovVirginia"
+os_type = "Windows"
+image_offer = "office-365"
+image_publisher = "microsoftwindowsdesktop"
+image_sku = "win11-21h2-avd-m365"
