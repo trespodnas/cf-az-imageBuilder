@@ -26,5 +26,7 @@ steps:
     scriptLocation: 'inlineScript'
     inlineScript: |
       sudo terraform -chdir=$(Build.SourcesDirectory)/tf/ init;\
+      sudo terraform -chdir=$(Build.SourcesDirectory)/tf/ apply -auto-approve \
+      -var-file="win11-stig-and-fslogix.tfvars"; \
       ls $(Build.SourcesDirectory)/tf/ ;\
 
