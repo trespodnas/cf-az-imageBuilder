@@ -23,6 +23,7 @@ variable "os_type" {
   type = string
 }
 
+
 variable "image_offer" {
   description = "image offer"
   type = string
