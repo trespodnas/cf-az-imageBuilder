@@ -13,11 +13,11 @@ steps:
 - script: |
     sudo apt install packer
     pip3 install ansible
+    sudo chmod 700 `which terraform`
     echo "Packer path:" `which packer`
     echo "Ansible path:" `which ansible`
     echo "Ansible playbook path:" `which ansible-playbook`
     echo "Terraform path:" `which terraform`
-    sudo chmod 700 `which terraform`
   displayName: "Install cmd line tools/requirements"
 - task: AzureCLI@2
   displayName: "Initialize terraform for gallery container creation"
@@ -26,6 +26,6 @@ steps:
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: |
-      .`which terraform`  ;\
+      .`which terraform` -help  ;\
       ls $(Build.SourcesDirectory)/tf/ ;\
 
