@@ -25,5 +25,5 @@ steps:
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: |
-      cd $(Build.SourcesDirectory)/tf/ \
-      ls . \
+      terraform init $(Build.SourcesDirectory)/tf/ \
+
