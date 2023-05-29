@@ -26,6 +26,6 @@ steps:
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: |
-      .`which terraform` -help  ;\
+      terraform -help  ;\
       ls $(Build.SourcesDirectory)/tf/ ;\
 
