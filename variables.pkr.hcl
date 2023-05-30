@@ -2,6 +2,14 @@ variable "client_id" {
   description = "app reg client id"
   type = string
 }
+variable "client_secret" {
+  description = "app reg client secret"
+  type = string
+}
+variable "subscription_id" {
+  description = "az subscription id"
+  type = string
+}
 variable "build_resource_group_name" {
   description = "build resource group name"
   type = string
