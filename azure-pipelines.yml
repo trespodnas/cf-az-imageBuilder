@@ -27,8 +27,7 @@ steps:
     useGlobalConfig: true
     scriptLocation: 'inlineScript'
     inlineScript: |
-      az login ;\ 
-      az account set -n "Hub" ;\
+      az account set -s ${{ parameters.avdSubServiceConnection }} ;\
       sudo terraform -chdir=$(Build.SourcesDirectory)/tf/ init;\
       sudo terraform -chdir=$(Build.SourcesDirectory)/tf/ apply -auto-approve \
       -var-file="win11-stig-and-fslogix.tfvars"; \
