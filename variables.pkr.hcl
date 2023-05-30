@@ -1,3 +1,7 @@
+variable "tenant_id" {
+  description = "az tenant id"
+  type = string
+}
 variable "client_id" {
   description = "app reg client id"
   type = string
