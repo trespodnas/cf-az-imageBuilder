@@ -1,3 +1,5 @@
+client_id = "$servicePrincipalId"
+client_secret = "$servicePrincipalKey"
 build_resource_group_name = "cfoavd-rg-cfsgaia-prod"
 image_offer = "office-365"
 image_publisher = "microsoftwindowsdesktop"
