@@ -17,17 +17,16 @@ stages:
           - task: PackerTool@0
             displayName: 'use latest packer'
           - task: Packer@1
-            displayName: 'packer ver'
+            displayName: 'packer validate'
             inputs:
               connectedServiceType: azure
               azureSubscription: ${{ parameters.avdSubServiceConnection }}
               templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
-              command: version
+              command: validate
           - task: Packer@1
             displayName: 'packer init'
             inputs:
               connectedServiceType: azure
               azureSubscription: ${{ parameters.avdSubServiceConnection }}
               templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
-              variables-file: $(Build.SourcesDirectory)/win11-withFsLogixAndSTIG.pkrvars.hcl
               command: init
