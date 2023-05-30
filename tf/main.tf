@@ -9,8 +9,6 @@ terraform {
 
 provider "azurerm" {
   features {}
-  use_cli = false
-  subscription_id = "0e4cfcad-ab43-48e2-9e53-2b0a2624a8c7"
 }
 
 resource "azurerm_shared_image" "main" {
