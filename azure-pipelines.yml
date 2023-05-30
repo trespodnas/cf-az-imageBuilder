@@ -13,7 +13,7 @@ pool:
   vmImage: ubuntu-latest
 
 stages:
-  - stage: run packer
+  - stage: runPacker
     jobs:
       - job: createImage
         steps:
