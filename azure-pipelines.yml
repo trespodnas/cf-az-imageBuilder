@@ -29,7 +29,7 @@ steps:
     useGlobalConfig: true
     scriptLocation: 'inlineScript'
     inlineScript: |
-      `which packer` ;\
+      packer build -force -var-file=$(Build.SourcesDirectory)win11-withFsLogixAndSTIG.pkrvars.hcl .
       # az sig image-definition create --resource-group ${{ parameters.imageGalleryResourceGroupName }} \
       # --gallery-name cloudfitonline_image_gallery --gallery-image-definition win11-stig-and-fslogix \
       # --publisher microsoftwindowsdesktop --offer office-365 --sku win11-21h2-avd-m365 \
