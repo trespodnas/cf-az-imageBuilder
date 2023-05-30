@@ -29,10 +29,11 @@ steps:
     useGlobalConfig: true
     scriptLocation: 'inlineScript'
     inlineScript: |
-      export subscriptionid=$(subscriptionid)
-      export clientAPPID=$(clientAPPID)
-      export clientSecret=$(clientSecret)
-      export tenantid=$(tenantid)
+      export subscriptionid=$(subscriptionid) ;\
+      export clientAPPID=$(clientAPPID) ;\
+      export clientSecret=$(clientSecret) ;\
+      export tenantid=$(tenantid) ;\
+      set ;\
       # ls $(Build.SourcesDirectory) \n;\
       packer init $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl && \
       packer build -force -var-file=$(Build.SourcesDirectory)/win11-withFsLogixAndSTIG.pkrvars.hcl . \
