@@ -1,3 +1,4 @@
+tenant_id = "$(tenantId)"
 client_id = "$(servicePrincipalId)"
 client_secret = "$(servicePrincipalKey)"
 build_resource_group_name = "cfoavd-rg-cfsgaia-prod"
