@@ -19,7 +19,6 @@ steps:
     echo "Packer path:" `which packer`
     echo "Ansible path:" `which ansible`
     echo "Ansible playbook path:" `which ansible-playbook`
-    echo "Terraform path:" `which terraform`
   displayName: "Install cmd line tools/requirements"
 - task: AzureCLI@2
   displayName: "Initialize terraform for gallery container creation"
@@ -30,10 +29,11 @@ steps:
     useGlobalConfig: true
     scriptLocation: 'inlineScript'
     inlineScript: |
-      az sig image-definition create --resource-group ${{ parameters.imageGalleryResourceGroupName }} \
-      --gallery-name cloudfitonline_image_gallery --gallery-image-definition win11-stig-and-fslogix \
-      --publisher microsoftwindowsdesktop --offer office-365 --sku win11-21h2-avd-m365 \
-      --os-type windows --os-state Generalized
+      `which packer` ;\
+      # az sig image-definition create --resource-group ${{ parameters.imageGalleryResourceGroupName }} \
+      # --gallery-name cloudfitonline_image_gallery --gallery-image-definition win11-stig-and-fslogix \
+      # --publisher microsoftwindowsdesktop --offer office-365 --sku win11-21h2-avd-m365 \
+      # --os-type windows --os-state Generalized
 # az sig image-definition create --resource-group MyResourceGroup \
 # --gallery-name MyGallery --gallery-image-definition MyImage \
 # --publisher GreatPublisher --offer GreatOffer --sku GreatSku \
