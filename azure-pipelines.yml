@@ -29,6 +29,5 @@ stages:
               connectedServiceType: azure
               azureSubscription: ${{ parameters.avdSubServiceConnection }}
               templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
-              variables-file: $(Build.SourcesDirectory)/variables.pkr.hcl
-              variables: $(Build.SourcesDirectory)/win11-withFsLogixAndSTIG.pkrvars.hcl
+              variables-file: $(Build.SourcesDirectory)/win11-withFsLogixAndSTIG.pkrvars.hcl
               command: init
