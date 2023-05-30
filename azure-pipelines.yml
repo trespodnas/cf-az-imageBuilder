@@ -9,25 +9,23 @@ trigger:
 - main
 pool:
   vmImage: ubuntu-latest
-steps:
-- script: |
-    sudo apt install packer
-    pip3 install ansible
-    echo "Packer path:" `which packer`
-    echo "Ansible path:" `which ansible`
-    echo "Ansible playbook path:" `which ansible-playbook`
-  displayName: "Install cmd line tools/requirements"
-- task: AzureCLI@2
-  displayName: "Initialize terraform for gallery container creation"
-  inputs:
-    azureSubscription: ${{ parameters.avdSubServiceConnection }}
-    scriptType: 'bash'
-    addSpnToEnvironment: true
-    scriptLocation: 'inlineScript'
-    inlineScript: |
-      set -x ;\
-      # echo $servicePrincipalId ;\
-      # ls $(Build.SourcesDirectory) \n;\
-      packer init $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl ; \
-      packer build -force -var-file=$(Build.SourcesDirectory)/win11-withFsLogixAndSTIG.pkrvars.hcl . \
-
+stages:
+  - stage: runPacker
+    jobs:
+      - job: createImage
+        steps:
+          - task: PackerTool@0
+            displayName: 'use latest packer'
+          - task: Packer@1
+            displayName: 'packer ver'
+            inputs:
+              azureSubscription: ${{ parameters.avdSubServiceConnection }}
+              templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
+              command: version
+          - task: Packer@1
+            displayName: 'packer init'
+            inputs:
+              azureSubscription: ${{ parameters.avdSubServiceConnection }}
+              templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
+              variables-file: $(Build.SourcesDirectory)/win11-withFsLogixAndSTIG.pkrvars.hcl
+              command: init
