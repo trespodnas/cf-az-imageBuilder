@@ -2,6 +2,9 @@ parameters:
   - name: avdSubServiceConnection
     type: string
     default: "cloudfitonline_avd_deployer"
+  - name: imageGalleryResourceGroupName
+    type: string
+    default: 'cfo-rg-sharedServices-compute-gallery'
 
 trigger:
 - main
@@ -27,9 +30,11 @@ steps:
     useGlobalConfig: true
     scriptLocation: 'inlineScript'
     inlineScript: |
-      az account set -n "Hub" ;\
-      sudo terraform -chdir=$(Build.SourcesDirectory)/tf/ init &&\
-      sudo terraform -chdir=$(Build.SourcesDirectory)/tf/ apply -auto-approve \
-      -var-file="win11-stig-and-fslogix.tfvars"; \
-      ls $(Build.SourcesDirectory)/tf/ ;\
-
+      az sig image-definition create --resource-group ${{ parameters.imageGalleryResourceGroupName }} \
+      --gallery-name cloudfitonline_image_gallery --gallery-image-definition win11-stig-and-fslogix \
+      --publisher microsoftwindowsdesktop --offer office-365 --sku win11-21h2-avd-m365 \
+      --os-type windows --os-state Generalized
+# az sig image-definition create --resource-group MyResourceGroup \
+# --gallery-name MyGallery --gallery-image-definition MyImage \
+# --publisher GreatPublisher --offer GreatOffer --sku GreatSku \
+# --os-type windows --os-state Generalized
