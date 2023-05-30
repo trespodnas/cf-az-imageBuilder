@@ -15,7 +15,7 @@ pool:
 steps:
 - script: |
     sudo apt install packer
-    pip3 install ansible
+    # pip3 install ansible
     echo "Packer path:" `which packer`
     echo "Ansible path:" `which ansible`
     echo "Ansible playbook path:" `which ansible-playbook`
@@ -30,19 +30,11 @@ steps:
     scriptLocation: 'inlineScript'
     inlineScript: |
       set -x
-      export subscriptionid=$(subscriptionid) ;\
-      export clientAPPID=$(clientAPPID) ;\
-      export clientSecret=$(clientSecret) ;\
-      export tenantid=$(tenantid) ;\
+      # export subscriptionid=$(subscriptionid) ;\
+      # export clientAPPID=$(clientAPPID) ;\
+      # export clientSecret=$(clientSecret) ;\
+      # export tenantid=$(tenantid) ;\
       echo `set` ;\
       # ls $(Build.SourcesDirectory) \n;\
-      packer init $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl && \
-      packer build -force -var-file=$(Build.SourcesDirectory)/win11-withFsLogixAndSTIG.pkrvars.hcl . \
-      # az sig image-definition create --resource-group ${{ parameters.imageGalleryResourceGroupName }} \
-      # --gallery-name cloudfitonline_image_gallery --gallery-image-definition win11-stig-and-fslogix \
-      # --publisher microsoftwindowsdesktop --offer office-365 --sku win11-21h2-avd-m365 \
-      # --os-type windows --os-state Generalized
-# az sig image-definition create --resource-group MyResourceGroup \
-# --gallery-name MyGallery --gallery-image-definition MyImage \
-# --publisher GreatPublisher --offer GreatOffer --sku GreatSku \
-# --os-type windows --os-state Generalized
+      # packer init $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl && \
+      # packer build -force -var-file=$(Build.SourcesDirectory)/win11-withFsLogixAndSTIG.pkrvars.hcl . \
