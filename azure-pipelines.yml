@@ -23,7 +23,7 @@ stages:
                   scriptType: 'bash'
                   scriptLocation: 'inlineScript'
                   inlineScript: |
-                    az keyvault create --location USGovVirginia -name kv-cfsgaia-prod \
+                    az keyvault create --location USGovVirginia --name kv-cfsgaia-prod \
                     --resource-group cfoavd-rg-cfsgaia-prod --enable-purge-protection \
                     --enabled-for-deployment --enabled-for-template-deployment
 
