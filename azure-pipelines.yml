@@ -1,3 +1,7 @@
+parameters:
+  - name: avdSubServiceConnection
+    type: string
+    default: "cloudfitonline_avd_deployer"
 stages:
   - stage: whatif
     displayName: Deployment - What If?
