@@ -28,30 +28,37 @@ variable "subscription_id" {
 variable "build_resource_group_name" {
   description = "build resource group name"
   type = string
+  default = "cfoavd-rg-cfsgaia-prod"
 }
 variable "image_offer" {
   description = "image offer"
   type = string
+  default = "office-365"
 }
 variable "image_publisher" {
   description = "image publisher"
   type = string
+  default = "microsoftwindowsdesktop"
 }
 variable "image_sku" {
   description = "image sku"
   type = string
+  default = "win11-21h2-avd-m365"
 }
 variable "managed_image_name" {
   description = "managed image name"
   type = string
+  default = "myPackerImage"
 }
 variable "managed_image_resource_group_name" {
   description = "managed image resource group name"
   type = string
+  default = "cfo-rg-sharedServices-compute-gallery"
 }
 variable "os_type" {
   description = "os type"
   type = string
+  default = "Windows"
 }
 variable "vm_size" {
   description = "vm size"
