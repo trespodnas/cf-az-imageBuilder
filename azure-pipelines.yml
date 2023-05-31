@@ -1,39 +1,64 @@
-parameters:
-  - name: avdSubServiceConnection
-    type: string
-    default: "cloudfitonline_avd_deployer"
-  - name: imageGalleryResourceGroupName
-    type: string
-    default: 'cfoavd-rg-cfsgaia-prod'
-trigger:
-- main
-pool:
-  vmImage: ubuntu-latest
 stages:
-  - stage: runPacker
+  - stage: whatif
+    displayName: Deployment - What If?
+    pool: 
+      vmImage: ubuntu-latest
+
     jobs:
-      - job: createImage
+      - job: whatifJob
+        displayName: WWADOD?
         steps:
-          - task: PackerTool@0
-            displayName: 'install/use latest packer'
-          - task: Packer@1
-            displayName: 'packer init'
-            inputs:
-              connectedServiceType: azure
-              azureSubscription: ${{ parameters.avdSubServiceConnection }}
-              templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
-              command: init
-          - task: Packer@1
-            displayName: 'packer validate'
-            inputs:
-              connectedServiceType: azure
-              azureSubscription: ${{ parameters.avdSubServiceConnection }}
-              templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
-              command: validate
-          - task: Packer@1
-            displayName: 'packer build'
-            inputs:
-              connectedServiceType: azure
-              azureSubscription: ${{ parameters.avdSubServiceConnection }}
-              templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
-              command: build
+            - checkout: self
+
+
+
+            - task: AzureCLI@2
+              displayName: "a la carte"
+              inputs:
+                  azureSubscription: ${{ parameters.avdSubServiceConnection }}
+                  scriptType: 'bash'
+                  scriptLocation: 'inlineScript'
+                  inlineScript: |
+                    az keyvault create --location USGovVirginia -name kv-cfsgaia-prod \
+                    --resource-group cfoavd-rg-cfsgaia-prod --enable-purge-protection \
+                    --enabled-for-deployment --enabled-for-template-deployment
+
+# parameters:
+#   - name: avdSubServiceConnection
+#     type: string
+#     default: "cloudfitonline_avd_deployer"
+#   - name: imageGalleryResourceGroupName
+#     type: string
+#     default: 'cfoavd-rg-cfsgaia-prod'
+# trigger:
+# - main
+# pool:
+#   vmImage: ubuntu-latest
+# stages:
+#   - stage: runPacker
+#     jobs:
+#       - job: createImage
+#         steps:
+#           - task: PackerTool@0
+#             displayName: 'install/use latest packer'
+#           - task: Packer@1
+#             displayName: 'packer init'
+#             inputs:
+#               connectedServiceType: azure
+#               azureSubscription: ${{ parameters.avdSubServiceConnection }}
+#               templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
+#               command: init
+#           - task: Packer@1
+#             displayName: 'packer validate'
+#             inputs:
+#               connectedServiceType: azure
+#               azureSubscription: ${{ parameters.avdSubServiceConnection }}
+#               templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
+#               command: validate
+#           - task: Packer@1
+#             displayName: 'packer build'
+#             inputs:
+#               connectedServiceType: azure
+#               azureSubscription: ${{ parameters.avdSubServiceConnection }}
+#               templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
+#               command: build
