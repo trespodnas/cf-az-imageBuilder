@@ -30,3 +30,11 @@ stages:
               azureSubscription: ${{ parameters.avdSubServiceConnection }}
               templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
               command: validate
+          - task: Packer@1
+            displayName: 'packer build'
+            inputs:
+              connectedServiceType: azure
+              azureSubscription: ${{ parameters.avdSubServiceConnection }}
+              templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
+              options: force
+              command: build
