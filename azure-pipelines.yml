@@ -15,7 +15,7 @@ stages:
       - job: createImage
         steps:
           - task: PackerTool@0
-            displayName: 'use latest packer'
+            displayName: 'install/use latest packer'
           - task: Packer@1
             displayName: 'packer init'
             inputs:
