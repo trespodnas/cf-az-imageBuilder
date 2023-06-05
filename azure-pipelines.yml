@@ -26,7 +26,7 @@ stages:
                   scriptType: 'bash'
                   scriptLocation: 'inlineScript'
                   inlineScript: |
-                    az account set -s ${{ parameters.avdSubscriptionId }};
+                    # az account set -s ${{ parameters.avdSubscriptionId }};
                     # az vm delete -y --ids $(az vm list -g cfoavd-rg-cfsgaia-prod --query "[].id" -o tsv)
                     # az group create -l USGovVirginia -n rg-cfoavd-company1-prod
                     # az network vnet create -g rg-cfoavd-company1-prod -n vnet-cfoavd-company1-prod --address-prefixes 10.2.0.0/19 \
