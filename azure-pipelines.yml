@@ -31,8 +31,7 @@ stages:
                     # az group create -l USGovVirginia -n rg-cfoavd-company1-prod
                     # az network vnet create -g rg-cfoavd-company1-prod -n vnet-cfoavd-company1-prod --address-prefixes 10.2.0.0/19 \
                     # --subnet-name snet-cfoavd-company1-prod --subnet-prefixes 10.2.0.0/25
-                    az network vnet peering create -g rg-cfoavd-company1-prod -n peer-vnet-cfoavd-company1-prod-to-cfo-vnet-hub-mlz \
-                    --vnet-name vnet-cfoavd-company1-prod --remote-vnet cfo-vnet-hub-mlz --allow-vnet-access
+                    az network vnet peering create -g cfo-rg-hub-mlz -n peer-cfo-rg-hub-mlz-to-vnet-cfoavd-company1-prod --vnet-name cfo-vnet-hub-mlz --remote-vnet vnet-cfoavd-company1-prod --allow-vnet-access
 
 # parameters:
 #   - name: avdSubServiceConnection
