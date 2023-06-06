@@ -33,8 +33,9 @@ stages:
                     # --subnet-name snet-cfoavd-company1-prod --subnet-prefixes 10.2.0.0/25
                     # az network vnet peering create -g cfo-rg-hub-mlz -n peer-cfo-rg-hub-mlz-to-vnet-cfoavd-company1-prod --vnet-name cfo-vnet-hub-mlz --remote-vnet vnet-cfoavd-company1-prod --allow-vnet-access
                     az config set extension.use_dynamic_install=yes_without_prompt;
-                    az desktopvirtualization applicationgroup delete --name "vdag-cfoavd-rg-cfsgaia-prod" --resource-group "cfoavd-rg-cfsgaia-prod";
-                    az desktopvirtualization hostpool delete --force true --name "vdpool-cfoavd-rg-cfsgaia-prod" --resource-group "cfoavd-rg-cfsgaia-prod"
+                    # az desktopvirtualization applicationgroup delete --name "vdag-cfoavd-rg-cfsgaia-prod" --resource-group "cfoavd-rg-cfsgaia-prod";
+                    # az desktopvirtualization hostpool delete --force true --name "vdpool-cfoavd-rg-cfsgaia-prod" --resource-group "cfoavd-rg-cfsgaia-prod"
+                    az desktopvirtualization workspace delete --resource-group "cfoavd-rg-cfsgaia-prod" --name "vdws-cfoavd-rg-cfsgaia-prod"
 
 # parameters:
 #   - name: avdSubServiceConnection
