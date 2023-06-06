@@ -27,7 +27,7 @@ stages:
                   scriptLocation: 'inlineScript'
                   inlineScript: |
                     # az account set -s ${{ parameters.avdSubscriptionId }};
-                    # az vm delete -y --ids $(az vm list -g cfoavd-rg-cfsgaia-prod --query "[].id" -o tsv)
+                    az vm delete --force-deletion -y --ids $(az vm list -g cfoavd-rg-cfsgaia-prod --query "[].id" -o tsv)
                     # az group create -l USGovVirginia -n rg-cfoavd-company1-prod
                     # az network vnet create -g rg-cfoavd-company1-prod -n vnet-cfoavd-company1-prod --address-prefixes 10.2.0.0/19 \
                     # --subnet-name snet-cfoavd-company1-prod --subnet-prefixes 10.2.0.0/25
@@ -35,7 +35,7 @@ stages:
                     az config set extension.use_dynamic_install=yes_without_prompt;
                     # az desktopvirtualization applicationgroup delete --name "vdag-cfoavd-rg-cfsgaia-prod" --resource-group "cfoavd-rg-cfsgaia-prod";
                     # az desktopvirtualization hostpool delete --force true --name "vdpool-cfoavd-rg-cfsgaia-prod" --resource-group "cfoavd-rg-cfsgaia-prod"
-                    az desktopvirtualization workspace delete --resource-group "cfoavd-rg-cfsgaia-prod" --name "vdws-cfoavd-rg-cfsgaia-prod"
+                    # az desktopvirtualization workspace delete --resource-group "cfoavd-rg-cfsgaia-prod" --name "vdws-cfoavd-rg-cfsgaia-prod"
 
 # parameters:
 #   - name: avdSubServiceConnection
