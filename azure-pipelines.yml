@@ -37,12 +37,12 @@ stages:
                     # az desktopvirtualization hostpool delete --force true --name "vdpool-cfoavd-rg-cfsgaia-prod" --resource-group "cfoavd-rg-cfsgaia-prod"
                     # az desktopvirtualization workspace delete --resource-group "cfoavd-rg-cfsgaia-prod" --name "vdws-cfoavd-rg-cfsgaia-prod"
                     az storage account delete -n ste27ozsvopl23w -g cfoavd-rg-cfsgaia-prod;
-                    az disk delete --name vm-cfoavd-rg-1_OsDisk_1_1c13555be0304142a3c404f1a46a4330 --resource-group CFOAVD-RG-CFSGAIA-PROD;
-                    az disk delete --name vm-cfoavd-rg-1_OsDisk_1_319f59019c3a4dfca3099894438d139b --resource-group CFOAVD-RG-CFSGAIA-PROD;
-                    az disk delete --name vm-cfoavd-rg-1_OsDisk_1_b85abe24bb484c639d6b525513e715a0 --resource-group CFOAVD-RG-CFSGAIA-PROD;
-                    az disk delete --name vm-cfoavd-rg-2_OsDisk_1_3a606c9f487b4e0f95055df5e7145558 --resource-group CFOAVD-RG-CFSGAIA-PROD;
-                    az disk delete --name vm-cfoavd-rg-2_OsDisk_1_4c9fefa1b28f4292b2c6e373d1ddc1a1 --resource-group CFOAVD-RG-CFSGAIA-PROD;
-                    az disk delete --name vm-cfoavd-rg-2_OsDisk_1_f8c27aaba624406c872cea24659f1581 --resource-group CFOAVD-RG-CFSGAIA-PROD
+                    az disk delete -y --name vm-cfoavd-rg-1_OsDisk_1_1c13555be0304142a3c404f1a46a4330 --resource-group CFOAVD-RG-CFSGAIA-PROD;
+                    az disk delete -y --name vm-cfoavd-rg-1_OsDisk_1_319f59019c3a4dfca3099894438d139b --resource-group CFOAVD-RG-CFSGAIA-PROD;
+                    az disk delete -y --name vm-cfoavd-rg-1_OsDisk_1_b85abe24bb484c639d6b525513e715a0 --resource-group CFOAVD-RG-CFSGAIA-PROD;
+                    az disk delete -y --name vm-cfoavd-rg-2_OsDisk_1_3a606c9f487b4e0f95055df5e7145558 --resource-group CFOAVD-RG-CFSGAIA-PROD;
+                    az disk delete -y --name vm-cfoavd-rg-2_OsDisk_1_4c9fefa1b28f4292b2c6e373d1ddc1a1 --resource-group CFOAVD-RG-CFSGAIA-PROD;
+                    az disk delete -y --name vm-cfoavd-rg-2_OsDisk_1_f8c27aaba624406c872cea24659f1581 --resource-group CFOAVD-RG-CFSGAIA-PROD
 
 
 
