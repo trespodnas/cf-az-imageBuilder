@@ -27,7 +27,8 @@ stages:
                   scriptLocation: 'inlineScript'
                   inlineScript: |
                     # az account set -s ${{ parameters.avdSubscriptionId }};
-                    az sig image-definition delete -g cfo-rg-sharedServices-compute-gallery -r avd-win11-stig-fslogix
+                    az sig image-definition delete -g cfo-rg-sharedServices-compute-gallery -r avd-win11-stig-fslogix \
+                    --ids /subscriptions/0e4cfcad-ab43-48e2-9e53-2b0a2624a8c7/resourceGroups/cfo-rg-sharedServices-compute-gallery/providers/Microsoft.Compute/galleries/cloudfitonline_image_gallery/images/avd-win11-stig-fslogix
                     # az sig image-definition create --resource-group cfo-rg-sharedServices-compute-gallery \
                     # --gallery-name cloudfitonline_image_gallery --gallery-image-definition avd-win11-stig-fslogix \
                     # --publisher CloudFit --offer Windows --sku 11avdStigFslogix --hyper-v-generation V2 \
