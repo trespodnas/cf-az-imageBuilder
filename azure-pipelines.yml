@@ -34,14 +34,14 @@ stages:
                     # --gallery-name cloudfitonline_image_gallery --gallery-image-definition avd-win11-stig \
                     # --publisher CloudFit --offer Windows --sku 11avdStigFslogix --hyper-v-generation V2 \
                     # --os-type windows --os-state Generalized
-                    az vm delete --force-deletion none -y --ids $(az vm list -g rg-cfoavd-company1-prod --query "[].id" -o tsv)
+                    # az vm delete --force-deletion none -y --ids $(az vm list -g rg-cfoavd-company1-prod --query "[].id" -o tsv)
                     # az group create -l USGovVirginia -n rg-cfoavd-company1-prod
                     # az network vnet create -g rg-cfoavd-company1-prod -n vnet-cfoavd-company1-prod --address-prefixes 10.2.0.0/19 \
                     # --subnet-name snet-cfoavd-company1-prod --subnet-prefixes 10.2.0.0/25
                     # az network vnet peering create -g cfo-rg-hub-mlz -n peer-cfo-rg-hub-mlz-to-vnet-cfoavd-company1-prod --vnet-name cfo-vnet-hub-mlz --remote-vnet vnet-cfoavd-company1-prod --allow-vnet-access
-                    # az config set extension.use_dynamic_install=yes_without_prompt;
-                    # az desktopvirtualization applicationgroup delete --name "vdag-cfoavd-rg-cfsgaia-prod" --resource-group "cfoavd-rg-cfsgaia-prod";
-                    # az desktopvirtualization hostpool delete --force true --name "vdpool-cfoavd-rg-cfsgaia-prod" --resource-group "cfoavd-rg-cfsgaia-prod"
+                    az config set extension.use_dynamic_install=yes_without_prompt;
+                    az desktopvirtualization applicationgroup delete --name "vdag-rg-cfoavd-company1-prod" --resource-group "rg-cfoavd-company1-prod";
+                    az desktopvirtualization hostpool delete --force true --name "vdpool-rg-cfoavd-company1-prod" --resource-group "rg-cfoavd-company1-prod"
                     # az desktopvirtualization workspace delete --resource-group "cfoavd-rg-cfsgaia-prod" --name "vdws-cfoavd-rg-cfsgaia-prod"
                     # az storage account delete -y -n ste27ozsvopl23w -g cfoavd-rg-cfsgaia-prod;
                     # az network nic delete -g cfoavd-rg-cfsgaia-prod -n nic-cfoavd-rg-1;
