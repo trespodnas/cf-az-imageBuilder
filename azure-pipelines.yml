@@ -29,7 +29,7 @@ stages:
                     # az account set -s ${{ parameters.avdSubscriptionId }};
                     az sig image-definition create --resource-group cfo-rg-sharedServices-compute-gallery \
                     --gallery-name cloudfitonline_image_gallery --gallery-image-definition avd-win11-stig-fslogix \
-                    --publisher CloudFit --offer Windows --sku 11avdStigFslogix --hyper-v-generation V2
+                    --publisher CloudFit --offer Windows --sku 11avdStigFslogix --hyper-v-generation V2 --os-type Windows
                     --os-type windows --os-state Generalized
                     # az vm delete --force-deletion none -y --ids $(az vm list -g cfoavd-rg-cfsgaia-prod --query "[].id" -o tsv)
                     # az group create -l USGovVirginia -n rg-cfoavd-company1-prod
