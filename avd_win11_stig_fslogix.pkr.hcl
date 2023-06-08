@@ -55,7 +55,7 @@ variable "image_sku" {
 variable "managed_image_name" {
   description = "managed image name"
   type = string
-  default = "myPackerImage"
+  default = "win11-stig-and-fslogix"
 }
 variable "managed_image_resource_group_name" {
   description = "managed image resource group name"
