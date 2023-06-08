@@ -27,7 +27,7 @@ stages:
                   scriptLocation: 'inlineScript'
                   inlineScript: |
                     az account set -s ${{ parameters.avdSubscriptionId }};
-                    az sig image-definition create --resource-group MyResourceGroup \
+                    az sig image-definition create --resource-group cfo-rg-sharedServices-compute-gallery \
                     --gallery-name cloudfitonline_image_gallery --gallery-image-definition avd-win11-stig-fslogix \
                     --publisher CloudFit --offer Windows --sku 11avdStigFslogix \
                     --os-type windows --os-state Generalized
