@@ -27,7 +27,7 @@ stages:
                   scriptLocation: 'inlineScript'
                   inlineScript: |
                     az account set -s ${{ parameters.avdSubscriptionId }};
-                    # az group delete -n rg-cfoavd-company1-prod --force-deletion-types Microsoft.Compute/virtualMachines --yes;
+                    az group delete -n rg-avd-cf-prod --force-deletion-types Microsoft.Compute/virtualMachines --yes;
                     # az sig image-version delete -g cfo-rg-sharedServices-compute-gallery -r cloudfitonline_image_gallery -i avd-win11 -e 0.1.4
                     # az sig image-definition delete -g cfo-rg-sharedServices-compute-gallery -r avd-win11-stig-fslogix \
                     # --ids /subscriptions/0e4cfcad-ab43-48e2-9e53-2b0a2624a8c7/resourceGroups/cfo-rg-sharedServices-compute-gallery/providers/Microsoft.Compute/galleries/cloudfitonline_image_gallery/images/avd-win11/versions/0.1.4
@@ -37,8 +37,8 @@ stages:
                     # --os-type windows --os-state Generalized
                     # az vm delete --force-deletion none -y --ids $(az vm list -g rg-cfoavd-company1-prod --query "[].id" -o tsv)
                     # az group create -l USGovVirginia -n rg-avd-cf-prod
-                    az network vnet create -g rg-avd-cf-prod -n vnet-avd-cf-prod --address-prefixes 10.2.0.0/19 \
-                    --subnet-name snet-avd-cf-prod --subnet-prefixes 10.2.0.0/25
+                    # az network vnet create -g rg-avd-cf-prod -n vnet-avd-cf-prod --address-prefixes 10.2.0.0/19 \
+                    # --subnet-name snet-avd-cf-prod --subnet-prefixes 10.2.0.0/25
                     # az network vnet peering create -g cfo-rg-hub-mlz -n peer-cfo-rg-hub-mlz-to-vnet-cfoavd-company1-prod --vnet-name cfo-vnet-hub-mlz --remote-vnet vnet-cfoavd-company1-prod --allow-vnet-access
                     # az config set extension.use_dynamic_install=yes_without_prompt;
                     # az desktopvirtualization applicationgroup delete --name "vdag-rg-cfoavd-company1-prod" --resource-group "rg-cfoavd-company1-prod";
