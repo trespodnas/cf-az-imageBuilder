@@ -27,7 +27,7 @@ stages:
                   scriptLocation: 'inlineScript'
                   inlineScript: |
                     az account set -s ${{ parameters.avdSubscriptionId }};
-                    az deployment sub show -n avd-resources-gaia-deployment --query properties.outputs |jq;
+                    az deployment sub show -n avd-resources-gaia-deployment --query properties.outputs /src/cf-avd/dev.parameters.json
                     # az group delete -n rg-cf-avd-infra-prod-001 --force-deletion-types Microsoft.Compute/virtualMachines --yes;
                     # az sig image-version delete -g cfo-rg-sharedServices-compute-gallery -r cloudfitonline_image_gallery -i avd-win11 -e 0.1.4
                     # az sig image-definition delete -g cfo-rg-sharedServices-compute-gallery -r avd-win11-stig-fslogix \
