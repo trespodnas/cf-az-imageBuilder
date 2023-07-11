@@ -8,7 +8,8 @@ parameters:
 stages:
   - stage: whatif
     displayName: Deployment - What If?
-    pool:
+
+    pool: 
       vmImage: ubuntu-latest
 
     jobs:
@@ -22,7 +23,11 @@ stages:
             - task: AzureCLI@2
               displayName: "a la carte"
               inputs:
+<<<<<<< HEAD
                   azureSubscription: ${{ parameters.avdSubServiceConnection }}
+=======
+                  azureSubscription: ${{ parameters.avdSubServiceConnection }} 
+>>>>>>> refs/remotes/origin/main
                   scriptType: 'bash'
                   scriptLocation: 'inlineScript'
                   inlineScript: |
