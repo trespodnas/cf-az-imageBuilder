@@ -3,189 +3,224 @@
     ansible.windows.win_file:
       path: C:\\test.txt
       state: touch
-  - name: (V-253461) - The system must be configured to prevent the storage of the LAN Manager hash of passwords
+  - name: (V-63797) - The system must be configured to prevent the storage of the LAN Manager hash of passwords
     ansible.windows.win_regedit:
       path: HKLM:\SYSTEM\CurrentControlSet\Control\Lsa
       state: present
       name: NoLMHash
       data: 1
       type: dword
-  - name: (V-253382) - Solicited Remote Assistance must not be allowed
+  - name: (V-63651) - Solicited Remote Assistance must not be allowed
     ansible.windows.win_regedit:
       path: HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services
       state: present
       name: fAllowToGetHelp
       data: 0
       type: dword
-  - name: (V-253386) - Autoplay must be turned off for non-volume devices
+  - name: (V-63325) - The Windows Installer Always install with elevated privileges must be disabled
+    ansible.windows.win_regedit:
+      path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Installer
+      state: present
+      name: AlwaysInstallElevated
+      data: 0
+      type: dword
+  - name: (V-63667) - Autoplay must be turned off for non-volume devices
     ansible.windows.win_regedit:
       path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer
       state: present
       name: NoAutoplayfornonVolume
       data: 1
       type: dword
-  - name: (V-253456) - Anonymous access to Named Pipes and Shares must be restricted
+  - name: (V-63759) - Anonymous access to Named Pipes and Shares must be restricted
     ansible.windows.win_regedit:
       path: HKLM:\SYSTEM\CurrentControlSet\Services\LanManServer\Parameters
       state: present
       name: RestrictNullSessAccess
       data: 1
       type: dword
-  - name: (V-253388) - Autoplay must be disabled for all drives
+  - name: (V-63673) - Autoplay must be disabled for all drives
     ansible.windows.win_regedit:
       path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\policies\Explorer
       state: present
       name: NoDriveTypeAutoRun
       data: 255
       type: dword
-  - name: (V-253387) - The default autorun behavior must be configured to prevent autorun commands
+  - name: (V-63671) - The default autorun behavior must be configured to prevent autorun commands
     ansible.windows.win_regedit:
       path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\policies\Explorer
       state: present
       name: NoAutorun
       data: 1
       type: dword
-  - name: (V-253275) - Internet Information System (IIS) or its subcomponents must not be installed on a workstation
+  - name: (V-63377) - Internet Information System (IIS) or its subcomponents must not be installed on a workstation
     ansible.windows.win_powershell:
       script: |
         Uninstall-WindowsFeature -Name IIS -Remove
-  - name: (V-253453) - Anonymous enumeration of SAM accounts must not be allowed
+  - name: (V-63745) - Anonymous enumeration of SAM accounts must not be allowed
     ansible.windows.win_regedit:
       path: HKLM:\SYSTEM\CurrentControlSet\Control\Lsa
       state: present
       name: RestrictAnonymousSAM
       data: 1
       type: dword
-  - name: (V-253284) - Structured Exception Handling Overwrite Protection (SEHOP) must be enabled
+  - name: (V-68849) - Structured Exception Handling Overwrite Protection (SEHOP) must be enabled
     ansible.windows.win_regedit:
       path: HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\kernel
       state: present
       name: DisableExceptionChainValidation
       data: 0
       type: dword
-  - name: (V-253283) - Data Execution Prevention (DEP) must be configured to at least OptOut
+  - name: (V-68845) - Data Execution Prevention (DEP) must be configured to at least OptOut
     ansible.windows.win_powershell:
       script: |
         BCDEDIT /set "{current}" nx OptOut
-  - name: (V-253462) - The LanMan authentication level must be set to send NTLMv2 response only, and to refuse LM and NTLM
+  - name: (V-63801) - The LanMan authentication level must be set to send NTLMv2 response only, and to refuse LM and NTLM
     ansible.windows.win_regedit:
       path: HKLM:\SYSTEM\CurrentControlSet\Control\Lsa
       state: present
       name: LmCompatibilityLevel
       data: 5
       type: dword
-  - name: (V-253454) - Anonymous enumeration of shares must be restricted
+  - name: (V-63749) - Anonymous enumeration of shares must be restricted
     ansible.windows.win_regedit:
       path: HKLM:\SYSTEM\CurrentControlSet\Control\Lsa
       state: present
       name: RestrictAnonymous
       data: 1
       type: dword
-  - name: (V-253450) - Unencrypted passwords must not be sent to third-party SMB Servers
+  - name: (V-82137) - The use of personal accounts for OneDrive synchronization must be disabled
+    ansible.windows.win_regedit:
+      path: HKCU:\Software\Policies\Microsoft\OneDrive
+      state: present
+      name: DisablePersonalSync
+      data: 1
+      type: dword
+  - name: (V-82139) - Windows 10 must be configured to prevent certificate error overrides in Microsoft Edge
+    ansible.windows.win_regedit:
+      path: HKLM:\SOFTWARE\Policies\Microsoft\MicrosoftEdge\Internet Settings
+      state: present
+      name: PreventCertErrorOverrides
+      data: 1
+      type: dword
+  - name: (V-63711) - Unencrypted passwords must not be sent to third-party SMB Servers
     ansible.windows.win_regedit:
       path: HKLM:\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters
       state: present
       name: EnablePlainTextPassword
       data: 0
       type: dword
-  - name: (V-253400) - The use of a hardware security device with Windows Hello for Business must be enabled
+  - name: (V-63713) - The Windows Defender SmartScreen filter for Microsoft Edge must be enabled
+    ansible.windows.win_regedit:
+      path: HKLM:\SOFTWARE\Policies\Microsoft\MicrosoftEdge\PhishingFilter
+      state: present
+      name: EnabledV9
+      data: 1
+      type: dword
+  - name: (V-63717) - The use of a hardware security device with Windows Hello for Business must be enabled
     ansible.windows.win_regedit:
       path: HKLM:\SOFTWARE\Policies\Microsoft\PassportForWork
       state: present
       name: RequireSecurityDevice
       data: 1
       type: dword
-  - name: (V-253383) - Unauthenticated RPC clients must be restricted from connecting to the RPC server
+  - name: (V-63657) - Unauthenticated RPC clients must be restricted from connecting to the RPC server
     ansible.windows.win_regedit:
       path: HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Rpc
       state: present
       name: RestrictRemoteClients
       data: 1
       type: dword
-  - name: (V-253455) - The system must be configured to prevent anonymous users from having the same rights as the Everyone group
+  - name: (V-82145) - If Enhanced diagnostic data is enabled it must be limited to the minimum required to support Windows Analytics
+    ansible.windows.win_regedit:
+      path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection
+      state: present
+      name: LimitEnhancedDiagnosticDataWindowsAnalytics
+      data: 1
+      type: dword
+  - name: (V-63755) - The system must be configured to prevent anonymous users from having the same rights as the Everyone group
     ansible.windows.win_regedit:
       path: HKLM:\SYSTEM\CurrentControlSet\Control\Lsa
       state: present
       name: EveryoneIncludesAnonymous
       data: 0
       type: dword
-  - name: (V-253286) - The Server Message Block (SMB) v1 protocol must be disabled on the system
+  - name: (V-70639) - The Server Message Block (SMB) v1 protocol must be disabled on the system
     ansible.windows.win_powershell:
       script: |
         Disable-WindowsOptionalFeature -Online -FeatureName SMB1Protocol
-  - name: (V-253457) - Remote calls to the Security Account Manager (SAM) must be restricted to Administrators
+  - name: (V-71769) - Remote calls to the Security Account Manager (SAM) must be restricted to Administrators
     ansible.windows.win_regedit:
       path: HKLM:\SYSTEM\CurrentControlSet\Control\Lsa
       state: present
       name: RestrictRemoteSAM
       data: O:BAG:BAD:(A;;RC;;;BA)
       type: string
-  - name: (V-253361) - Internet connection sharing must be disabled
+  - name: (V-71765) - Internet connection sharing must be disabled
     ansible.windows.win_regedit:
       path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Network Connections
       state: present
       name: NC_ShowSharedAccessUI
       data: 0
       type: dword
-  - name: (V-253358) - WDigest Authentication must be disabled
+  - name: (V-71763) - WDigest Authentication must be disabled
     ansible.windows.win_regedit:
       path: HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\Wdigest
       state: present
       name: UseLogonCredential
       data: 0
       type: dword
-  - name: (V-253339) - The System event log size must be configured to 32768 KB or greater
+  - name: (V-63527) - The System event log size must be configured to 32768 KB or greater
     ansible.windows.win_regedit:
       path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\EventLog\System
       state: present
       name: MaxSize
       data: 32768
       type: dword
-  - name: (V-253414) - PowerShell script block logging must be enabled
+  - name: (V-68819) - PowerShell script block logging must be enabled
     ansible.windows.win_regedit:
       path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\EventLog\System
       state: present
       name: EnableScriptBlockLogging
       data: 1
       type: dword
-  - name: (V-253412) - Users must be notified if a web-based program attempts to install software
+  - name: (V-63329) - Users must be notified if a web-based program attempts to install software
     ansible.windows.win_regedit:
       path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Installer
       state: present
       name: SafeForScripting
       data: 0
       type: dword
-  - name: (V-253443) - The system must be configured to require a strong session key
+  - name: (V-63665) - The system must be configured to require a strong session key
     ansible.windows.win_regedit:
       path: HKLM:\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters
       state: present
       name: RequireStrongKey
       data: 1
       type: dword
-  - name: (V-253277) - Simple TCP/IP Services must not be installed on the system
+  - name: (V-63383) - Simple TCP/IP Services must not be installed on the system
     ansible.windows.win_powershell:
       script: |
         Disable-WindowsOptionalFeature -Online -FeatureName "Simple TCPIP Services"
-  - name: (V-253276) - Simple Network Management Protocol (SNMP) must not be installed on the system
+  - name: (V-63381) - Simple Network Management Protocol (SNMP) must not be installed on the system
     ansible.windows.win_powershell:
       script: |
         Disable-WindowsOptionalFeature -Online -FeatureName "Simple Network Management Protocol (SNMP)"
-  - name: (V-253278) - The Telnet Client must not be installed on the system
+  - name: (V-63385) - The Telnet Client must not be installed on the system
     ansible.windows.win_powershell:
       script: |
         Disable-WindowsOptionalFeature -Online -FeatureName "Telnet Client"
-  - name: (V-253279) - The TFTP Client must not be installed on the system
+  - name: (V-63389) - The TFTP Client must not be installed on the system
     ansible.windows.win_powershell:
       script: |
         Disable-WindowsOptionalFeature -Online -FeatureName "TFTP Client"
-  - name: (V-253444) - The machine inactivity limit must be set to 15 minutes, locking the system with the screensaver
+  - name: (V-63669) - The machine inactivity limit must be set to 15 minutes, locking the system with the screensaver
     ansible.windows.win_regedit:
       path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System
       state: present
       name: InactivityTimeoutSecs
       data: 900
       type: dword
-  - name: (V-253368) - Windows 11 must be configured to enable Remote host allows delegation of non-exportable credentials
+  - name: (V-74699) - Windows 10 must be configured to enable Remote host allows delegation of non-exportable credentials
     ansible.windows.win_regedit:
       path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\CredentialsDelegation
       state: present

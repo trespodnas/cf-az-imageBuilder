@@ -1,8 +1,6 @@
 - name: Create windows 11 STIG image w/fslogix agent installed.
   hosts: all
   gather_facts: false
-  roles:
-    - ansible-role-win-fslogix
   tasks:
     - name: Kick off windows 11 STIG
       ansible.builtin.include_tasks:
