@@ -23,11 +23,7 @@ stages:
             - task: AzureCLI@2
               displayName: "a la carte"
               inputs:
-<<<<<<< HEAD
-                  azureSubscription: ${{ parameters.avdSubServiceConnection }}
-=======
                   azureSubscription: ${{ parameters.avdSubServiceConnection }} 
->>>>>>> refs/remotes/origin/main
                   scriptType: 'bash'
                   scriptLocation: 'inlineScript'
                   inlineScript: |
