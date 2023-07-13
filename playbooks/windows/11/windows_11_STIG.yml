@@ -636,14 +636,15 @@
       state: present
       name: ProcessCreationIncludeCmdLine_Enabled
       data: 1
+
       type: dword
-  - name: (V-253468) - User Account Control approval mode for the built-in Administrator must be enabled
-    ansible.windows.win_regedit:
-      path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System
-      state: present
-      name: FilterAdministratorToken
-      data: 1
-      type: dword
+#  - name: (V-253468) - User Account Control approval mode for the built-in Administrator must be enabled
+#    ansible.windows.win_regedit:
+#      path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System
+#      state: present
+#      name: FilterAdministratorToken
+#      data: 1
+#      type: dword
   - name: (V-253381) - The user must be prompted for a password on resume from sleep (plugged in)
     ansible.windows.win_regedit:
       path: HKLM:\SOFTWARE\Policies\Microsoft\Power\PowerSettings\0e796bdb-100d-47d6-a2d5-f7d2daa51f51
@@ -651,20 +652,20 @@
       name: ACSettingIndex
       data: 1
       type: dword
-  - name: (V-253460) - Kerberos encryption types must be configured to prevent the use of DES and RC4 encryption suites
-    ansible.windows.win_regedit:
-      path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters
-      state: present
-      name: SupportedEncryptionTypes
-      data: 2147483640
-      type: dword
-  - name: (V-253466) - The system must be configured to use FIPS-compliant algorithms for encryption, hashing, and signing
-    ansible.windows.win_regedit:
-      path: HKLM:\SYSTEM\CurrentControlSet\Control\Lsa\FIPSAlgorithmPolicy
-      state: present
-      name: Enabled
-      data: 1
-      type: dword
+#  - name: (V-253460) - Kerberos encryption types must be configured to prevent the use of DES and RC4 encryption suites
+#    ansible.windows.win_regedit:
+#      path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters
+#      state: present
+#      name: SupportedEncryptionTypes
+#      data: 2147483640
+#      type: dword
+#  - name: (V-253466) - The system must be configured to use FIPS-compliant algorithms for encryption, hashing, and signing
+#    ansible.windows.win_regedit:
+#      path: HKLM:\SYSTEM\CurrentControlSet\Control\Lsa\FIPSAlgorithmPolicy
+#      state: present
+#      name: Enabled
+#      data: 1
+#      type: dword
   - name: (V-253380) - Users must be prompted for a password on resume from sleep (on battery)
     ansible.windows.win_regedit:
       path: HKLM:\SOFTWARE\Policies\Microsoft\Power\PowerSettings\0e796bdb-100d-47d6-a2d5-f7d2daa51f51
