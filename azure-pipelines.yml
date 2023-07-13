@@ -97,3 +97,4 @@ stages:
               azureSubscription: ${{ parameters.avdSubServiceConnection }}
               templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
               command: build
+              force: true
