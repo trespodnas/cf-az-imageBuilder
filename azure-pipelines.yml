@@ -73,6 +73,7 @@ stages:
   - stage: runPacker
     jobs:
       - job: createImage
+        timeoutInMinutes: 120
         steps:
           - task: PackerTool@0
             displayName: 'install/use latest packer'
