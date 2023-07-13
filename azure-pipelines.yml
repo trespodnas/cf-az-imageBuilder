@@ -1,34 +1,34 @@
-parameters:
-  - name: avdSubServiceConnection
-    type: string
-    default: "cloudfitonline_avd_deployer"
-  - name: avdSubscriptionId
-    type: string
-    default: "64774875-a7d4-46d8-9906-30cdc05f5bac"
-stages:
-  - stage: whatif
-    displayName: Deployment - What If?
+# parameters:
+#   - name: avdSubServiceConnection
+#     type: string
+#     default: "cloudfitonline_avd_deployer"
+#   - name: avdSubscriptionId
+#     type: string
+#     default: "64774875-a7d4-46d8-9906-30cdc05f5bac"
+# stages:
+#   - stage: whatif
+#     displayName: Deployment - What If?
 
-    pool: 
-      vmImage: ubuntu-latest
+#     pool: 
+#       vmImage: ubuntu-latest
 
-    jobs:
-      - job: whatifJob
-        displayName: WWADOD?
-        steps:
-            - checkout: self
+#     jobs:
+#       - job: whatifJob
+#         displayName: WWADOD?
+#         steps:
+#             - checkout: self
 
 
 
-            - task: AzureCLI@2
-              displayName: "a la carte"
-              inputs:
-                  azureSubscription: ${{ parameters.avdSubServiceConnection }} 
-                  scriptType: 'bash'
-                  scriptLocation: 'inlineScript'
-                  inlineScript: |
-                    az account set -s ${{ parameters.avdSubscriptionId }};
-                    echo $(az deployment sub show -n avd-resources-gaia-deployment --query properties.outputs);
+#             - task: AzureCLI@2
+#               displayName: "a la carte"
+#               inputs:
+#                   azureSubscription: ${{ parameters.avdSubServiceConnection }} 
+#                   scriptType: 'bash'
+#                   scriptLocation: 'inlineScript'
+#                   inlineScript: |
+                    # az account set -s ${{ parameters.avdSubscriptionId }};
+                    # echo $(az deployment sub show -n avd-resources-gaia-deployment --query properties.outputs);
                     # az group delete -n rg-cf-avd-infra-prod-001 --force-deletion-types Microsoft.Compute/virtualMachines --yes;
                     # az sig image-version delete -g cfo-rg-sharedServices-compute-gallery -r cloudfitonline_image_gallery -i avd-win11 -e 0.1.4
                     # az sig image-definition delete -g cfo-rg-sharedServices-compute-gallery -r avd-win11-stig-fslogix \
@@ -58,42 +58,42 @@ stages:
 
 
 
-# parameters:
-#   - name: avdSubServiceConnection
-#     type: string
-#     default: "cloudfitonline_avd_deployer"
-#   - name: imageGalleryResourceGroupName
-#     type: string
-#     default: 'cfoavd-rg-cfsgaia-prod'
-# trigger:
-# - main
-# pool:
-#   vmImage: ubuntu-latest
-# stages:
-#   - stage: runPacker
-#     jobs:
-#       - job: createImage
-#         steps:
-#           - task: PackerTool@0
-#             displayName: 'install/use latest packer'
-#           - task: Packer@1
-#             displayName: 'packer init'
-#             inputs:
-#               connectedServiceType: azure
-#               azureSubscription: ${{ parameters.avdSubServiceConnection }}
-#               templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
-#               command: init
-#           - task: Packer@1
-#             displayName: 'packer validate'
-#             inputs:
-#               connectedServiceType: azure
-#               azureSubscription: ${{ parameters.avdSubServiceConnection }}
-#               templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
-#               command: validate
-#           - task: Packer@1
-#             displayName: 'packer build'
-#             inputs:
-#               connectedServiceType: azure
-#               azureSubscription: ${{ parameters.avdSubServiceConnection }}
-#               templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
-#               command: build
+parameters:
+  - name: avdSubServiceConnection
+    type: string
+    default: "cloudfitonline_avd_deployer"
+  - name: imageGalleryResourceGroupName
+    type: string
+    default: 'cfoavd-rg-cfsgaia-prod'
+trigger:
+- main
+pool:
+  vmImage: ubuntu-latest
+stages:
+  - stage: runPacker
+    jobs:
+      - job: createImage
+        steps:
+          - task: PackerTool@0
+            displayName: 'install/use latest packer'
+          - task: Packer@1
+            displayName: 'packer init'
+            inputs:
+              connectedServiceType: azure
+              azureSubscription: ${{ parameters.avdSubServiceConnection }}
+              templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
+              command: init
+          - task: Packer@1
+            displayName: 'packer validate'
+            inputs:
+              connectedServiceType: azure
+              azureSubscription: ${{ parameters.avdSubServiceConnection }}
+              templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
+              command: validate
+          - task: Packer@1
+            displayName: 'packer build'
+            inputs:
+              connectedServiceType: azure
+              azureSubscription: ${{ parameters.avdSubServiceConnection }}
+              templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
+              command: build
