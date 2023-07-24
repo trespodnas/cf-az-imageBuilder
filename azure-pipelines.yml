@@ -29,8 +29,8 @@ stages:
                   inlineScript: |
                     az account set -s ${{ parameters.avdSubscriptionId }};
                     # echo $(az deployment sub show -n avd-resources-gaia-deployment --query properties.outputs);
-                    az group delete -n rg-cf-avd-test-stig --force-deletion-types Microsoft.Compute/virtualMachines --yes;
-                    az group delete -n cf-avd-infra-prod-001 --force-deletion-types Microsoft.Compute/virtualMachines --yes;
+                    # az group delete -n rg-cf-avd-test-stig --force-deletion-types Microsoft.Compute/virtualMachines --yes;
+                    # az group delete -n cf-avd-infra-prod-001 --force-deletion-types Microsoft.Compute/virtualMachines --yes;
                     # az sig image-version delete -g cfo-rg-sharedServices-compute-gallery -r cloudfitonline_image_gallery -i avd-win11 -e 0.1.4
                     # az sig image-definition delete -g cfo-rg-sharedServices-compute-gallery -r avd-win11-stig-fslogix \
                     # --ids /subscriptions/0e4cfcad-ab43-48e2-9e53-2b0a2624a8c7/resourceGroups/cfo-rg-sharedServices-compute-gallery/providers/Microsoft.Compute/galleries/cloudfitonline_image_gallery/images/avd-win11/versions/0.1.4
@@ -38,7 +38,7 @@ stages:
                     # --gallery-name cloudfitonline_image_gallery --gallery-image-definition avd-win11-stig \
                     # --publisher CloudFit --offer Windows --sku 11avdStigFslogix --hyper-v-generation V2 \
                     # --os-type windows --os-state Generalized
-                    # az vm delete --force-deletion none -y --ids $(az vm list -g rg-cfoavd-company1-prod --query "[].id" -o tsv)
+                    az vm delete --force-deletion none -y --ids $(az vm list -g cfoavd-rg-cfsgaia-prod --query "[].id" -o tsv)
                     # az group create -l USGovVirginia -n rg-cf-avd-net-prod-001;
                     # az network vnet create -g rg-cf-avd-net-prod-001 -n vnet-cf-avd-net-prod-001 --address-prefixes 10.2.0.0/19 \
                     # --subnet-name snet-cf-avd-net-prod-001 --subnet-prefixes 10.2.0.0/25
