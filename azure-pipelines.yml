@@ -4,7 +4,7 @@ parameters:
     default: "cloudfitonline_avd_deployer"
   - name: avdSubscriptionId
     type: string
-    default: "64774875-a7d4-46d8-9906-30cdc05f5bac"
+    default: "0e4cfcad-ab43-48e2-9e53-2b0a2624a8c7"
 stages:
   - stage: whatif
     displayName: Deployment - What If?
