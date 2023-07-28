@@ -70,7 +70,7 @@ variable "os_type" {
 variable "vm_size" {
   description = "vm size"
   type = string
-  default = "Standard_B2ms"
+  default = "Standard_B4ms"
 }
 
 
