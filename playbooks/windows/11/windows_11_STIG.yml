@@ -500,90 +500,90 @@
       name: NoWebServices
       data: 1
       type: dword
-  - name: (V-253365) - Connections to non-domain networks when connected to a domain authenticated network must be blocked
-    ansible.windows.win_regedit:
-      path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\WcmSvc\GroupPolicy
-      state: present
-      name: fBlockNonDomain
-      data: 1
-      type: dword
-  - name: (V-253364) - Simultaneous connections to the Internet or a Windows domain must be limited
-    ansible.windows.win_regedit:
-      path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\WcmSvc\GroupPolicy
-      state: present
-      name: fMinimizeConnections
-      data: 1
-      type: dword
-  - name: (V-253377) - Systems must at least attempt device authentication using certificates
-    ansible.windows.win_regedit:
-      path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters
-      state: present
-      name: DevicePKInitEnabled
-      data: 1
-      type: dword
-  - name: (V-253378) - The network selection user interface (UI) must not be displayed on the logon screen
-    ansible.windows.win_regedit:
-      path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\System
-      state: present
-      name: DontDisplayNetworkSelectionUI
-      data: 1
-      type: dword
-  - name: (V-253475) - User Account Control must virtualize file and registry write failures to per-user locations
-    ansible.windows.win_regedit:
-      path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System
-      state: present
-      name: EnableVirtualization
-      data: 1
-      type: dword
-  - name: (V-253402) - Passwords must not be saved in the Remote Desktop Client
-    ansible.windows.win_regedit:
-      path: HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services
-      state: present
-      name: DisablePasswordSaving
-      data: 1
-      type: dword
-  - name: (V-253288) - The Server Message Block (SMB) v1 protocol must be disabled on the SMB client
-    ansible.windows.win_regedit:
-      path: HKLM:\SYSTEM\CurrentControlSet\Services\mrxsmb10
-      state: present
-      name: Start
-      data: 4
-      type: dword
-  - name: (V-253287) - The Server Message Block (SMB) v1 protocol must be disabled on the SMB server
-    ansible.windows.win_regedit:
-      path: HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters
-      state: present
-      name: SMB1
-      data: 0
-      type: dword
-  - name: (V-253405) - The Remote Desktop Session Host must require secure RPC communications
-    ansible.windows.win_regedit:
-      path: HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services
-      state: present
-      name: fEncryptRPCTraffic
-      data: 1
-      type: dword
-  - name: (V-253404) - Remote Desktop Services must always prompt a client for passwords upon connection
-    ansible.windows.win_regedit:
-      path: HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services
-      state: present
-      name: fPromptForPassword
-      data: 1
-      type: dword
-  - name: (V-253403) - Local drives must be prevented from sharing with Remote Desktop Session Hosts
-    ansible.windows.win_regedit:
-      path: HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services
-      state: present
-      name: fDisableCdm
-      data: 1
-      type: dword
-  - name: (V-253438) - Outgoing secure channel traffic must be encrypted or signed
-    ansible.windows.win_regedit:
-      path: HKLM:\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters
-      state: present
-      name: RequireSignOrSeal
-      data: 1
-      type: dword
+#  - name: (V-253365) - Connections to non-domain networks when connected to a domain authenticated network must be blocked
+#    ansible.windows.win_regedit:
+#      path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\WcmSvc\GroupPolicy
+#      state: present
+#      name: fBlockNonDomain
+#      data: 1
+#      type: dword
+#  - name: (V-253364) - Simultaneous connections to the Internet or a Windows domain must be limited
+#    ansible.windows.win_regedit:
+#      path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\WcmSvc\GroupPolicy
+#      state: present
+#      name: fMinimizeConnections
+#      data: 1
+#      type: dword
+#  - name: (V-253377) - Systems must at least attempt device authentication using certificates
+#    ansible.windows.win_regedit:
+#      path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters
+#      state: present
+#      name: DevicePKInitEnabled
+#      data: 1
+#      type: dword
+#  - name: (V-253378) - The network selection user interface (UI) must not be displayed on the logon screen
+#    ansible.windows.win_regedit:
+#      path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\System
+#      state: present
+#      name: DontDisplayNetworkSelectionUI
+#      data: 1
+#      type: dword
+#  - name: (V-253475) - User Account Control must virtualize file and registry write failures to per-user locations
+#    ansible.windows.win_regedit:
+#      path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System
+#      state: present
+#      name: EnableVirtualization
+#      data: 1
+#      type: dword
+#  - name: (V-253402) - Passwords must not be saved in the Remote Desktop Client
+#    ansible.windows.win_regedit:
+#      path: HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services
+#      state: present
+#      name: DisablePasswordSaving
+#      data: 1
+#      type: dword
+#  - name: (V-253288) - The Server Message Block (SMB) v1 protocol must be disabled on the SMB client
+#    ansible.windows.win_regedit:
+#      path: HKLM:\SYSTEM\CurrentControlSet\Services\mrxsmb10
+#      state: present
+#      name: Start
+#      data: 4
+#      type: dword
+#  - name: (V-253287) - The Server Message Block (SMB) v1 protocol must be disabled on the SMB server
+#    ansible.windows.win_regedit:
+#      path: HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters
+#      state: present
+#      name: SMB1
+#      data: 0
+#      type: dword
+#  - name: (V-253405) - The Remote Desktop Session Host must require secure RPC communications
+#    ansible.windows.win_regedit:
+#      path: HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services
+#      state: present
+#      name: fEncryptRPCTraffic
+#      data: 1
+#      type: dword
+#  - name: (V-253404) - Remote Desktop Services must always prompt a client for passwords upon connection
+#    ansible.windows.win_regedit:
+#      path: HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services
+#      state: present
+#      name: fPromptForPassword
+#      data: 1
+#      type: dword
+#  - name: (V-253403) - Local drives must be prevented from sharing with Remote Desktop Session Hosts
+#    ansible.windows.win_regedit:
+#      path: HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services
+#      state: present
+#      name: fDisableCdm
+#      data: 1
+#      type: dword
+#  - name: (V-253438) - Outgoing secure channel traffic must be encrypted or signed
+#    ansible.windows.win_regedit:
+#      path: HKLM:\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters
+#      state: present
+#      name: RequireSignOrSeal
+#      data: 1
+#      type: dword
   - name: (V-253437) - Audit policy using subcategories must be enabled
     ansible.windows.win_regedit:
       path: HKLM:\SYSTEM\CurrentControlSet\Control\Lsa
@@ -591,13 +591,6 @@
       name: SCENoApplyLegacyAuditPolicy
       data: 1
       type: dword
-  - name: (V-253363) - Windows 11 must be configured to prioritize ECC Curves with longer key lengths first
-    ansible.windows.win_regedit:
-      path: HKLM:\SOFTWARE\Policies\Microsoft\Cryptography\Configuration\SSL\00010002
-      state: present
-      name: EccCurves
-      data: NistP384 NistP256
-      type: multistring
   - name: (V-253463) - The system must be configured to the required LDAP client signing level
     ansible.windows.win_regedit:
       path: HKLM:\SYSTEM\CurrentControlSet\Services\LDAP
@@ -652,20 +645,6 @@
       name: ACSettingIndex
       data: 1
       type: dword
-#  - name: (V-253460) - Kerberos encryption types must be configured to prevent the use of DES and RC4 encryption suites
-#    ansible.windows.win_regedit:
-#      path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters
-#      state: present
-#      name: SupportedEncryptionTypes
-#      data: 2147483640
-#      type: dword
-#  - name: (V-253466) - The system must be configured to use FIPS-compliant algorithms for encryption, hashing, and signing
-#    ansible.windows.win_regedit:
-#      path: HKLM:\SYSTEM\CurrentControlSet\Control\Lsa\FIPSAlgorithmPolicy
-#      state: present
-#      name: Enabled
-#      data: 1
-#      type: dword
   - name: (V-253380) - Users must be prompted for a password on resume from sleep (on battery)
     ansible.windows.win_regedit:
       path: HKLM:\SOFTWARE\Policies\Microsoft\Power\PowerSettings\0e796bdb-100d-47d6-a2d5-f7d2daa51f51
