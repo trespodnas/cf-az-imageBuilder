@@ -36,7 +36,7 @@ stages:
                     # --gallery-name cloudfitonline_image_gallery --gallery-image-definition avd-win11-stig \
                     # --publisher CloudFit --offer Windows --sku 11avdStigFslogix --hyper-v-generation V2 \
                     # --os-type windows --os-state Generalized
-                    az vm delete --resource-group myResourceGroup --name myVM --force-deletion none;
+                    # az vm delete --resource-group myResourceGroup --name myVM --force-deletion none;
                     # az group create -l USGovVirginia -n rg-cf-avd-net-prod-001;
                     # az network vnet create -g rg-cf-avd-net-prod-001 -n vnet-cf-avd-net-prod-001 --address-prefixes 10.2.0.0/19 \
                     # --subnet-name snet-cf-avd-net-prod-001 --subnet-prefixes 10.2.0.0/25
