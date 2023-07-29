@@ -24,7 +24,7 @@ stages:
                   scriptType: 'bash'
                   scriptLocation: 'inlineScript'
                   inlineScript: |
-                    az account set -s ${{ parameters.avdSubscriptionId }};
+                    # az account set -s ${{ parameters.avdSubscriptionId }};
                     # az vm delete -y --ids $(az vm list -g cfoavd-rg-cfsgaia-prod --query "[].id" -o tsv)
                     # echo $(az deployment sub show -n avd-resources-gaia-deployment --query properties.outputs);
                     az group delete -n rg-cf-avd-test-stig --force-deletion-types Microsoft.Compute/virtualMachines --yes;
