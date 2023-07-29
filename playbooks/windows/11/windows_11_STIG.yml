@@ -631,13 +631,6 @@
       data: 1
 
       type: dword
-#  - name: (V-253468) - User Account Control approval mode for the built-in Administrator must be enabled
-#    ansible.windows.win_regedit:
-#      path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System
-#      state: present
-#      name: FilterAdministratorToken
-#      data: 1
-#      type: dword
   - name: (V-253381) - The user must be prompted for a password on resume from sleep (plugged in)
     ansible.windows.win_regedit:
       path: HKLM:\SOFTWARE\Policies\Microsoft\Power\PowerSettings\0e796bdb-100d-47d6-a2d5-f7d2daa51f51
@@ -745,5 +738,138 @@
       path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\PushNotifications
       state: present
       name: NoToastApplicationNotificationOnLockScreen
+      data: 1
+      type: dword
+  - name: (V-253446) - The Windows message title for the legal notice must be configured
+    ansible.windows.win_regedit:
+      path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System
+      state: present
+      name: LegalNoticeCaption
+      data: "DoD Notice and Consent Banner, US Department of Defense Warning Statement"
+      type: string
+  - name: (V-253411) - The Windows Installer feature "Always install with elevated privileges" must be disabled
+    ansible.windows.win_regedit:
+      path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Installer
+      state: present
+      name: AlwaysInstallElevated
+      data: 0
+      type: dword
+  - name: (V-253467) - The default permissions of global system objects must be increased
+    ansible.windows.win_regedit:
+      path: HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager
+      state: present
+      name: ProtectionMode
+      data: 1
+      type: dword
+  - name: (V-253425) - Windows 11 must be configured to prevent users from receiving suggestions for third-party or additional applications
+    ansible.windows.win_regedit:
+      path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent
+      state: present
+      name: DisableThirdPartySuggestions
+      data: 1
+      type: dword
+  - name: (V-253440) - Outgoing secure channel traffic must be signed
+    ansible.windows.win_regedit:
+      path: HKLM:\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters
+      state: present
+      name: SignSecureChannel
+      data: 1
+      type: dword
+  - name: (V-253439) - Outgoing secure channel traffic must be encrypted
+    ansible.windows.win_regedit:
+      path: HKLM:\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters
+      state: present
+      name: SealSecureChannel
+      data: 1
+      type: dword
+  - name: (V-253423) - The convenience PIN for Windows 11 must be disabled
+    ansible.windows.win_regedit:
+      path: HKLM:\Software\Policies\Microsoft\Windows\System
+      state: present
+      name: AllowDomainPINLogon
+      data: 0
+      type: dword
+  - name: (V-253422) - Windows 11 must be configured to prevent Windows apps from being activated by voice while the system is locked
+    ansible.windows.win_regedit:
+      path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy
+      state: present
+      name: LetAppsActivateWithVoiceAboveLock
+      data: 2
+      type: dword
+  - name: (V-253422) - Windows 11 must be configured to prevent Windows apps from being activated by voice while the system is locked
+    ansible.windows.win_regedit:
+      path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy
+      state: present
+      name: LetAppsActivateWithVoice
+      data: 2
+      type: dword
+  - name: (V-253368) - Windows 11 must be configured to enable Remote host allows delegation of non-exportable credentials
+    ansible.windows.win_regedit:
+      path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\CredentialsDelegation
+      state: present
+      name: AllowProtectedCreds
+      data: 1
+      type: dword
+  - name: (V-253395) - The Microsoft Defender SmartScreen for Explorer must be enabled
+    ansible.windows.win_regedit:
+      path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\System
+      state: present
+      name: EnableSmartScreen
+      data: 1
+      type: dword
+  - name: (V-253395) - The Microsoft Defender SmartScreen for Explorer must be enabled
+    ansible.windows.win_regedit:
+      path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\System
+      state: present
+      name: ShellSmartScreenLevel
+      data: Block
+      type: string
+  - name: (V-253392) - Enhanced diagnostic data must be limited to the minimum required to support Windows Analytics
+    ansible.windows.win_regedit:
+      path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection
+      state: present
+      name: LimitEnhancedDiagnosticDataWindowsAnalytics
+      data: 1
+      type: dword
+  - name: (V-253478) - Zone information must be preserved when saving attachments
+    ansible.windows.win_regedit:
+      path: HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Attachments
+      state: present
+      name: SaveZoneInformation
+      data: 2
+      type: dword
+  - name: (V-253415) - PowerShell Transcription must be enabled on Windows 11
+    ansible.windows.win_regedit:
+      path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\PowerShell\Transcription
+      state: present
+      name: EnableTranscripting
+      data: 1
+      type: dword
+  - name: (V-253408) - Basic authentication for RSS feeds over HTTP must not be used
+    ansible.windows.win_regedit:
+      path: HKLM:\SOFTWARE\Policies\Microsoft\Internet Explorer\Feeds
+      state: present
+      name: AllowBasicAuthInClear
+      data: 0
+      type: dword
+  - name: (V-253451) - The Windows SMB server must be configured to always perform SMB packet signing
+    ansible.windows.win_regedit:
+      path: HKLM:\SYSTEM\CurrentControlSet\Services\LanManServer\Parameters
+      state: present
+      name: RequireSecuritySignature
+      data: 1
+      type: dword
+  - name: (V-253353) - IPv6 source routing must be configured to highest protection
+    ansible.windows.win_regedit:
+      path: HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters
+      state: present
+      name: DisableIpSourceRouting
+      data: 2
+      type: dword
+  - name: (V-253424) - Windows Ink Workspace must be configured to disallow access above the lock
+    ansible.windows.win_regedit:
+      path: HKLM:\Software\Policies\Microsoft\WindowsInkWorkspace
+      state: present
+      name: AllowWindowsInkWorkspace
       data: 1
       type: dword
