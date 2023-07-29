@@ -4,7 +4,7 @@ parameters:
     default: "cloudfitonline_avd_deployer"
   - name: avdSubscriptionId
     type: string
-    default: "0e4cfcad-ab43-48e2-9e53-2b0a2624a8c7"
+    default: "64774875-a7d4-46d8-9906-30cdc05f5bac"
 stages:
   - stage: whatif
     displayName: Deployment - What If?
@@ -24,7 +24,7 @@ stages:
                   scriptType: 'bash'
                   scriptLocation: 'inlineScript'
                   inlineScript: |
-                    # az account set -s ${{ parameters.avdSubscriptionId }};
+                    az account set -s ${{ parameters.avdSubscriptionId }};
                     # az vm delete -y --ids $(az vm list -g cfoavd-rg-cfsgaia-prod --query "[].id" -o tsv)
                     # echo $(az deployment sub show -n avd-resources-gaia-deployment --query properties.outputs);
                     az group delete -n rg-cf-avd-test-stig --force-deletion-types Microsoft.Compute/virtualMachines --yes;
