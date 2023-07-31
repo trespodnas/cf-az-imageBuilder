@@ -25,6 +25,8 @@ stages:
                   scriptLocation: 'inlineScript'
                   inlineScript: |
                     az account set -s ${{ parameters.avdSubscriptionId }};
+                    az feature register --namespace Microsoft.Compute --name EncryptionAtHost;
+                    az feature show --namespace Microsoft.Compute --name EncryptionAtHost;
                     # az vm delete -y --ids $(az vm list -g cfoavd-rg-cfsgaia-prod --query "[].id" -o tsv)
                     # echo $(az deployment sub show -n avd-resources-gaia-deployment --query properties.outputs);
                     az group delete -n rg-cf-avd-stig-082923 --force-deletion-types Microsoft.Compute/virtualMachines --yes;
