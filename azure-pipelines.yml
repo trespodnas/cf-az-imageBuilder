@@ -29,7 +29,7 @@ stages:
                     az feature show --namespace Microsoft.Compute --name EncryptionAtHost;
                     # az vm delete -y --ids $(az vm list -g cfoavd-rg-cfsgaia-prod --query "[].id" -o tsv)
                     # echo $(az deployment sub show -n avd-resources-gaia-deployment --query properties.outputs);
-                    az group delete -n rg-cf-avd-stig-082923 --force-deletion-types Microsoft.Compute/virtualMachines --yes;
+                    # az group delete -n rg-cf-avd-stig-082923 --force-deletion-types Microsoft.Compute/virtualMachines --yes;
                     # az group delete -n rg-cf-avd-infra-prod-001 --force-deletion-types Microsoft.Compute/virtualMachines --yes;
                     # az group delete -n rg-cf-avd-infra-prod-001 --force-deletion-types Microsoft.Compute/virtualMachines --yes;
                     # az sig image-version delete -g cfo-rg-sharedServices-compute-gallery -r cloudfitonline_image_gallery -i avd-win11 -e 0.1.4
