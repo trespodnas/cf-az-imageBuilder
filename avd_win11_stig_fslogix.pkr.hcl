@@ -39,12 +39,12 @@ variable "subscription_id" {
 variable "build_key_vault_name" {
   description = "key vault name"
   type = string
-  default = "kv-cfsgaia-prod"
+  default = "kv-cf-avd-image-build"
 }
 variable "build_resource_group_name" {
   description = "build resource group name"
   type = string
-  default = "cfoavd-rg-cfsgaia-prod"
+  default = "rg-cf-avd-image-build"
 }
 variable "image_offer" {
   description = "image offer"
