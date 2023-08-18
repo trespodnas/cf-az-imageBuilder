@@ -83,18 +83,7 @@ stages:
              
       - job: createImage
         timeoutInMinutes: 120
-        steps:
-          - task: AzureCLI@2
-            displayName: "switch to avd subscription"
-            inputs:
-                  azureSubscription: ${{ parameters.avdSubServiceConnection }} 
-                  scriptType: 'bash'
-                  scriptLocation: 'inlineScript'
-                  inlineScript: |
-                    az account set -s ${{ parameters.avdSubscriptionId }};
-
-
-        
+        steps:      
           - task: PackerTool@0
             displayName: 'install/use latest packer'
           - task: Packer@1
