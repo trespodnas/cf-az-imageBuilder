@@ -69,7 +69,7 @@ parameters:
     default: "cloudfitonline_avd_deployer"
   - name: imageGalleryResourceGroupName
     type: string
-    default: 'cfoavd-rg-cfsgaia-prod'
+    default: 'cfo-rg-sharedServices-compute-gallery'
 trigger:
 - main
 pool:
