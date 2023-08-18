@@ -80,22 +80,21 @@ pool:
 stages:
   - stage: runPacker
     jobs:
-      - job: whatifJob
-        displayName: WWADOD?
+             
+      - job: createImage
+        timeoutInMinutes: 120
         steps:
-            - checkout: self
-            - task: AzureCLI@2
-              displayName: "a la carte"
-              inputs:
+          - task: AzureCLI@2
+            displayName: "switch to avd subscription"
+            inputs:
                   azureSubscription: ${{ parameters.avdSubServiceConnection }} 
                   scriptType: 'bash'
                   scriptLocation: 'inlineScript'
                   inlineScript: |
                     az account set -s ${{ parameters.avdSubscriptionId }};
-              
-      - job: createImage
-        timeoutInMinutes: 120
-        steps:
+
+
+        
           - task: PackerTool@0
             displayName: 'install/use latest packer'
           - task: Packer@1
