@@ -34,7 +34,7 @@ variable "client_secret" {
 variable "subscription_id" {
   description = "az subscription id"
   type = string
-  default = "0e4cfcad-ab43-48e2-9e53-2b0a2624a8c7"
+  default = "64774875-a7d4-46d8-9906-30cdc05f5bac"
 }
 variable "build_key_vault_name" {
   description = "key vault name"
