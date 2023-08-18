@@ -1,103 +1,103 @@
-# parameters:
-#   - name: avdSubServiceConnection
-#     type: string
-#     default: "cloudfitonline_avd_deployer"
-#   - name: avdSubscriptionId
-#     type: string
-#     default: "64774875-a7d4-46d8-9906-30cdc05f5bac"
-# stages:
-#   - stage: whatif
-#     displayName: Deployment - What If?
-
-#     pool: 
-#       vmImage: ubuntu-latest
-
-#     jobs:
-#       - job: whatifJob
-#         displayName: WWADOD?
-#         steps:
-#             - checkout: self
-#             - task: AzureCLI@2
-#               displayName: "a la carte"
-#               inputs:
-#                   azureSubscription: ${{ parameters.avdSubServiceConnection }} 
-#                   scriptType: 'bash'
-#                   scriptLocation: 'inlineScript'
-#                   inlineScript: |
-#                     az account set -s ${{ parameters.avdSubscriptionId }};
-#                     # az feature register --namespace Microsoft.Compute --name EncryptionAtHost;
-#                     # az provider register -n Microsoft.Compute;
-#                     az feature show --namespace Microsoft.Compute --name EncryptionAtHost;
-#                     # az vm delete -y --ids $(az vm list -g cfoavd-rg-cfsgaia-prod --query "[].id" -o tsv)
-#                     # echo $(az deployment sub show -n avd-resources-gaia-deployment --query properties.outputs);
-#                     # az group delete -n rg-cf-avd-stig-082923 --force-deletion-types Microsoft.Compute/virtualMachines --yes;
-#                     # az group delete -n rg-cf-avd-infra-prod-001 --force-deletion-types Microsoft.Compute/virtualMachines --yes;
-#                     # az group delete -n rg-cf-avd-infra-prod-001 --force-deletion-types Microsoft.Compute/virtualMachines --yes;
-#                     # az sig image-version delete -g cfo-rg-sharedServices-compute-gallery -r cloudfitonline_image_gallery -i avd-win11 -e 0.1.4
-#                     # az sig image-definition delete -g cfo-rg-sharedServices-compute-gallery -r avd-win11-stig-fslogix \
-#                     # --ids /subscriptions/0e4cfcad-ab43-48e2-9e53-2b0a2624a8c7/resourceGroups/cfo-rg-sharedServices-compute-gallery/providers/Microsoft.Compute/galleries/cloudfitonline_image_gallery/images/avd-win11/versions/0.1.4
-#                     # az sig image-definition create --resource-group cfo-rg-sharedServices-compute-gallery \
-#                     # --gallery-name cloudfitonline_image_gallery --gallery-image-definition avd-win11-stig \
-#                     # --publisher CloudFit --offer Windows --sku 11avdStigFslogix --hyper-v-generation V2 \
-#                     # --os-type windows --os-state Generalized
-#                     # az vm delete --resource-group myResourceGroup --name myVM --force-deletion none;
-#                     # az group create -l USGovVirginia -n rg-cf-avd-net-prod-001;
-#                     # az network vnet create -g rg-cf-avd-net-prod-001 -n vnet-cf-avd-net-prod-001 --address-prefixes 10.2.0.0/19 \
-#                     # --subnet-name snet-cf-avd-net-prod-001 --subnet-prefixes 10.2.0.0/25
-#                     # az network vnet peering create -g cfo-rg-hub-mlz -n peer-cfo-rg-hub-mlz-to-vnet-cfoavd-company1-prod --vnet-name cfo-vnet-hub-mlz --remote-vnet vnet-cfoavd-company1-prod --allow-vnet-access
-#                     # az config set extension.use_dynamic_install=yes_without_prompt;
-#                     # az desktopvirtualization applicationgroup delete --name "vdag-rg-cfoavd-company1-prod" --resource-group "rg-cfoavd-company1-prod";
-#                     # az desktopvirtualization hostpool delete --force true --name "vdpool-rg-cfoavd-company1-prod" --resource-group "rg-cfoavd-company1-prod"
-#                     # az desktopvirtualization workspace delete --resource-group "cfoavd-rg-cfsgaia-prod" --name "vdws-cfoavd-rg-cfsgaia-prod"
-#                     # az storage account delete -y -n ste27ozsvopl23w -g cfoavd-rg-cfsgaia-prod;
-#                     # az network nic delete -g rg-cfoavd-company1-prod -n nic-rg-cfoavd-1;
-#                     # az network nic delete -g rg-cfoavd-company1-prod -n nnic-rg-cfoavd-2;
-#                     # az disk delete -y --name vm-rg-cfoavd-1_OsDisk_1_4077f76cd7394d34a87d7d79742722bf --resource-group RG-CFOAVD-COMPANY1-PROD;
-#                     # az disk delete -y --name vm-rg-cfoavd-2_OsDisk_1_25873a01f8fb43ffb44d93bd3f82ca9a --resource-group RG-CFOAVD-COMPANY1-PROD;
-#                     # az disk delete -y --name vm-cfoavd-rg-1_OsDisk_1_b85abe24bb484c639d6b525513e715a0 --resource-group CFOAVD-RG-CFSGAIA-PROD;
-#                     # az disk delete -y --name vm-cfoavd-rg-2_OsDisk_1_3a606c9f487b4e0f95055df5e7145558 --resource-group CFOAVD-RG-CFSGAIA-PROD;
-#                     # az disk delete -y --name vm-cfoavd-rg-2_OsDisk_1_4c9fefa1b28f4292b2c6e373d1ddc1a1 --resource-group CFOAVD-RG-CFSGAIA-PROD;
-#                     # az disk delete -y --name vm-cfoavd-rg-2_OsDisk_1_f8c27aaba624406c872cea24659f1581 --resource-group CFOAVD-RG-CFSGAIA-PROD
-
-
 parameters:
   - name: avdSubServiceConnection
     type: string
     default: "cloudfitonline_avd_deployer"
-  - name: imageGalleryResourceGroupName
+  - name: avdSubscriptionId
     type: string
-    default: 'cfoavd-rg-cfsgaia-prod'
-trigger:
-- main
-pool:
-  vmImage: ubuntu-latest
+    default: "64774875-a7d4-46d8-9906-30cdc05f5bac"
 stages:
-  - stage: runPacker
+  - stage: whatif
+    displayName: Deployment - What If?
+
+    pool: 
+      vmImage: ubuntu-latest
+
     jobs:
-      - job: createImage
-        timeoutInMinutes: 120
+      - job: whatifJob
+        displayName: WWADOD?
         steps:
-          - task: PackerTool@0
-            displayName: 'install/use latest packer'
-          - task: Packer@1
-            displayName: 'packer init'
-            inputs:
-              connectedServiceType: azure
-              azureSubscription: ${{ parameters.avdSubServiceConnection }}
-              templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
-              command: init
-          - task: Packer@1
-            displayName: 'packer validate'
-            inputs:
-              connectedServiceType: azure
-              azureSubscription: ${{ parameters.avdSubServiceConnection }}
-              templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
-              command: validate
-          - task: Packer@1
-            displayName: 'packer build'
-            inputs:
-              connectedServiceType: azure
-              azureSubscription: ${{ parameters.avdSubServiceConnection }}
-              templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
-              command: build
-              force: true
+            - checkout: self
+            - task: AzureCLI@2
+              displayName: "a la carte"
+              inputs:
+                  azureSubscription: ${{ parameters.avdSubServiceConnection }} 
+                  scriptType: 'bash'
+                  scriptLocation: 'inlineScript'
+                  inlineScript: |
+                    az account set -s ${{ parameters.avdSubscriptionId }};
+                    # az feature register --namespace Microsoft.Compute --name EncryptionAtHost;
+                    # az provider register -n Microsoft.Compute;
+                    # az feature show --namespace Microsoft.Compute --name EncryptionAtHost;
+                    # az vm delete -y --ids $(az vm list -g cfoavd-rg-cfsgaia-prod --query "[].id" -o tsv)
+                    # echo $(az deployment sub show -n avd-resources-gaia-deployment --query properties.outputs);
+                    # az group delete -n rg-cf-avd-stig-082923 --force-deletion-types Microsoft.Compute/virtualMachines --yes;
+                    # az group delete -n rg-cf-avd-infra-prod-001 --force-deletion-types Microsoft.Compute/virtualMachines --yes;
+                    # az group delete -n rg-cf-avd-infra-prod-001 --force-deletion-types Microsoft.Compute/virtualMachines --yes;
+                    # az sig image-version delete -g cfo-rg-sharedServices-compute-gallery -r cloudfitonline_image_gallery -i avd-win11 -e 0.1.4
+                    # az sig image-definition delete -g cfo-rg-sharedServices-compute-gallery -r avd-win11-stig-fslogix \
+                    # --ids /subscriptions/0e4cfcad-ab43-48e2-9e53-2b0a2624a8c7/resourceGroups/cfo-rg-sharedServices-compute-gallery/providers/Microsoft.Compute/galleries/cloudfitonline_image_gallery/images/avd-win11/versions/0.1.4
+                    # az sig image-definition create --resource-group cfo-rg-sharedServices-compute-gallery \
+                    # --gallery-name cloudfitonline_image_gallery --gallery-image-definition avd-win11-stig \
+                    # --publisher CloudFit --offer Windows --sku 11avdStigFslogix --hyper-v-generation V2 \
+                    # --os-type windows --os-state Generalized
+                    # az vm delete --resource-group myResourceGroup --name myVM --force-deletion none;
+                    az group create -l USGovVirginia -n rg-cf-avd-image-build;
+                    # az network vnet create -g rg-cf-avd-net-prod-001 -n vnet-cf-avd-net-prod-001 --address-prefixes 10.2.0.0/19 \
+                    # --subnet-name snet-cf-avd-net-prod-001 --subnet-prefixes 10.2.0.0/25
+                    # az network vnet peering create -g cfo-rg-hub-mlz -n peer-cfo-rg-hub-mlz-to-vnet-cfoavd-company1-prod --vnet-name cfo-vnet-hub-mlz --remote-vnet vnet-cfoavd-company1-prod --allow-vnet-access
+                    # az config set extension.use_dynamic_install=yes_without_prompt;
+                    # az desktopvirtualization applicationgroup delete --name "vdag-rg-cfoavd-company1-prod" --resource-group "rg-cfoavd-company1-prod";
+                    # az desktopvirtualization hostpool delete --force true --name "vdpool-rg-cfoavd-company1-prod" --resource-group "rg-cfoavd-company1-prod"
+                    # az desktopvirtualization workspace delete --resource-group "cfoavd-rg-cfsgaia-prod" --name "vdws-cfoavd-rg-cfsgaia-prod"
+                    # az storage account delete -y -n ste27ozsvopl23w -g cfoavd-rg-cfsgaia-prod;
+                    # az network nic delete -g rg-cfoavd-company1-prod -n nic-rg-cfoavd-1;
+                    # az network nic delete -g rg-cfoavd-company1-prod -n nnic-rg-cfoavd-2;
+                    # az disk delete -y --name vm-rg-cfoavd-1_OsDisk_1_4077f76cd7394d34a87d7d79742722bf --resource-group RG-CFOAVD-COMPANY1-PROD;
+                    # az disk delete -y --name vm-rg-cfoavd-2_OsDisk_1_25873a01f8fb43ffb44d93bd3f82ca9a --resource-group RG-CFOAVD-COMPANY1-PROD;
+                    # az disk delete -y --name vm-cfoavd-rg-1_OsDisk_1_b85abe24bb484c639d6b525513e715a0 --resource-group CFOAVD-RG-CFSGAIA-PROD;
+                    # az disk delete -y --name vm-cfoavd-rg-2_OsDisk_1_3a606c9f487b4e0f95055df5e7145558 --resource-group CFOAVD-RG-CFSGAIA-PROD;
+                    # az disk delete -y --name vm-cfoavd-rg-2_OsDisk_1_4c9fefa1b28f4292b2c6e373d1ddc1a1 --resource-group CFOAVD-RG-CFSGAIA-PROD;
+                    # az disk delete -y --name vm-cfoavd-rg-2_OsDisk_1_f8c27aaba624406c872cea24659f1581 --resource-group CFOAVD-RG-CFSGAIA-PROD
+
+
+# parameters:
+#   - name: avdSubServiceConnection
+#     type: string
+#     default: "cloudfitonline_avd_deployer"
+#   - name: imageGalleryResourceGroupName
+#     type: string
+#     default: 'cfoavd-rg-cfsgaia-prod'
+# trigger:
+# - main
+# pool:
+#   vmImage: ubuntu-latest
+# stages:
+#   - stage: runPacker
+#     jobs:
+#       - job: createImage
+#         timeoutInMinutes: 120
+#         steps:
+#           - task: PackerTool@0
+#             displayName: 'install/use latest packer'
+#           - task: Packer@1
+#             displayName: 'packer init'
+#             inputs:
+#               connectedServiceType: azure
+#               azureSubscription: ${{ parameters.avdSubServiceConnection }}
+#               templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
+#               command: init
+#           - task: Packer@1
+#             displayName: 'packer validate'
+#             inputs:
+#               connectedServiceType: azure
+#               azureSubscription: ${{ parameters.avdSubServiceConnection }}
+#               templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
+#               command: validate
+#           - task: Packer@1
+#             displayName: 'packer build'
+#             inputs:
+#               connectedServiceType: azure
+#               azureSubscription: ${{ parameters.avdSubServiceConnection }}
+#               templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
+#               command: build
+#               force: true
