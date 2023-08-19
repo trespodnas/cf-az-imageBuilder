@@ -13,18 +13,18 @@
 #       vmImage: ubuntu-latest
 
 #     jobs:
-#       - job: whatifJob
-#         displayName: WWADOD?
-#         steps:
-#             - checkout: self
-#             - task: AzureCLI@2
-#               displayName: "a la carte"
-#               inputs:
-#                   azureSubscription: ${{ parameters.avdSubServiceConnection }} 
-#                   scriptType: 'bash'
-#                   scriptLocation: 'inlineScript'
-#                   inlineScript: |
-#                     az account set -s ${{ parameters.avdSubscriptionId }};
+      # - job: whatifJob
+      #   displayName: WWADOD?
+      #   steps:
+      #       - checkout: self
+      #       - task: AzureCLI@2
+      #         displayName: "a la carte"
+      #         inputs:
+      #             azureSubscription: ${{ parameters.avdSubServiceConnection }} 
+      #             scriptType: 'bash'
+      #             scriptLocation: 'inlineScript'
+      #             inlineScript: |
+      #               az account set -s ${{ parameters.avdSubscriptionId }};
 #                     # az feature register --namespace Microsoft.Compute --name EncryptionAtHost;
 #                     # az provider register -n Microsoft.Compute;
 #                     # az feature show --namespace Microsoft.Compute --name EncryptionAtHost;
@@ -83,6 +83,18 @@ pool:
 stages:
   - stage: runPacker
     jobs:
+      - job: whatifJob
+        displayName: WWADOD?
+        steps:
+            - checkout: self
+            - task: AzureCLI@2
+              displayName: "a la carte"
+              inputs:
+                  azureSubscription: ${{ parameters.avdSubServiceConnection }} 
+                  scriptType: 'bash'
+                  scriptLocation: 'inlineScript'
+                  inlineScript: |
+                    az account set -s ${{ parameters.avdSubscriptionId }};
              
       - job: createImage
         timeoutInMinutes: 120
@@ -107,7 +119,7 @@ stages:
             displayName: 'packer build'
             inputs:
               connectedServiceType: azure
-              azureSubscription: ${{ parameters.avdSubscriptionId }}
+              azureSubscription: ${{ parameters.avdSubServiceConnection }}
               templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
               command: build
               force: true
