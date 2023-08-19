@@ -24,13 +24,13 @@ stages:
                   scriptType: 'bash'
                   scriptLocation: 'inlineScript'
                   inlineScript: |
-                    az account set -s ${{ parameters.avdSubscriptionId }};
+                    # az account set -s ${{ parameters.avdSubscriptionId }};
                     # az feature register --namespace Microsoft.Compute --name EncryptionAtHost;
                     # az provider register -n Microsoft.Compute;
                     # az feature show --namespace Microsoft.Compute --name EncryptionAtHost;
                     # az vm delete -y --ids $(az vm list -g cfoavd-rg-cfsgaia-prod --query "[].id" -o tsv)
                     # echo $(az deployment sub show -n avd-resources-gaia-deployment --query properties.outputs);
-                    az group delete -n rg-cf-avd-image-build --force-deletion-types Microsoft.Compute/virtualMachines --yes;
+                    # az group delete -n rg-cf-avd-image-build --force-deletion-types Microsoft.Compute/virtualMachines --yes;
                     # az group delete -n rg-cf-avd-infra-prod-001 --force-deletion-types Microsoft.Compute/virtualMachines --yes;
                     # az group delete -n rg-cf-avd-infra-prod-001 --force-deletion-types Microsoft.Compute/virtualMachines --yes;
                     # az sig image-version delete -g cfo-rg-sharedServices-compute-gallery -r cloudfitonline_image_gallery -i avd-win11 -e 0.1.4
@@ -41,11 +41,11 @@ stages:
                     # --publisher CloudFit --offer Windows --sku 11avdStigFslogix --hyper-v-generation V2 \
                     # --os-type windows --os-state Generalized
                     # az vm delete --resource-group myResourceGroup --name myVM --force-deletion none;
-                    # az group create -l USGovVirginia -n rg-cf-avd-image-build;
-                    # az keyvault create --location USGovVirginia --name kv-cf-avd-image-builder \
-                    # --resource-group rg-cf-avd-image-build --enable-purge-protection \
-                    # --enabled-for-deployment --enabled-for-template-deployment \
-                    # --enable-rbac-authorization
+                    az group create -l USGovVirginia -n rg-cf-avd-image-build;
+                    az keyvault create --location USGovVirginia --name kv-cf-avd-image-builde \
+                    --resource-group rg-cf-avd-image-build --enable-purge-protection \
+                    --enabled-for-deployment --enabled-for-template-deployment \
+                    --enable-rbac-authorization
                     # az keyvault delete --name kv-cf-avd-image-build --resource-group rg-cf-avd-image-build
                     # az keyvault purge --subscription ${{ parameters.avdSubscriptionId }} -n kv-cf-avd-image-build
                     # az network vnet create -g rg-cf-avd-net-prod-001 -n vnet-cf-avd-net-prod-001 --address-prefixes 10.2.0.0/19 \
