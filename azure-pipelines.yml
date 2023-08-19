@@ -47,7 +47,7 @@ stages:
                     # --enabled-for-deployment --enabled-for-template-deployment \
                     # --enable-rbac-authorization
                     # az keyvault delete --name kv-cf-avd-image-build --resource-group rg-cf-avd-image-build
-                    az keyvault purge --subscription ${{ parameters.avdSubscriptionId }} -name kv-cf-avd-image-build
+                    az keyvault purge --subscription ${{ parameters.avdSubscriptionId }} -n kv-cf-avd-image-build
                     # az network vnet create -g rg-cf-avd-net-prod-001 -n vnet-cf-avd-net-prod-001 --address-prefixes 10.2.0.0/19 \
                     # --subnet-name snet-cf-avd-net-prod-001 --subnet-prefixes 10.2.0.0/25
                     # az network vnet peering create -g cfo-rg-hub-mlz -n peer-cfo-rg-hub-mlz-to-vnet-cfoavd-company1-prod --vnet-name cfo-vnet-hub-mlz --remote-vnet vnet-cfoavd-company1-prod --allow-vnet-access
