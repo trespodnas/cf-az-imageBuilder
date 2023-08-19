@@ -70,6 +70,9 @@ parameters:
   - name: avdSubServiceConnection
     type: string
     default: "cloudfitonline_avd_deployer"
+  - name: avdSubscriptionId
+    type: string
+    default: "64774875-a7d4-46d8-9906-30cdc05f5bac"
 
 trigger:
 - main
@@ -88,21 +91,24 @@ stages:
             displayName: 'packer init'
             inputs:
               connectedServiceType: azure
-              azureSubscription: ${{ parameters.avdSubServiceConnection }}
+              # azureSubscription: ${{ parameters.avdSubServiceConnection }}
+              connectedServiceAzure: ${{ parameters.avdSubServiceConnection }}
               templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
               command: init
           - task: Packer@1
             displayName: 'packer validate'
             inputs:
               connectedServiceType: azure
-              azureSubscription: ${{ parameters.avdSubServiceConnection }}
+              # azureSubscription: ${{ parameters.avdSubServiceConnection }}
+              connectedServiceAzure: ${{ parameters.avdSubServiceConnection }}
               templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
               command: validate
           - task: Packer@1
             displayName: 'packer build'
             inputs:
               connectedServiceType: azure
-              azureSubscription: ${{ parameters.avdSubServiceConnection }}
+              # azureSubscription: ${{ parameters.avdSubServiceConnection }}
+              connectedServiceAzure: ${{ parameters.avdSubServiceConnection }}
               templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
               command: build
               force: true
