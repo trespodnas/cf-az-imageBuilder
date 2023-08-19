@@ -39,7 +39,7 @@ variable "subscription_id" {
 variable "build_key_vault_name" {
   description = "key vault name"
   type = string
-  default = "kv-cf-avd-image-builder"
+  default = "kv-cf-avd-image-builds"
 }
 variable "build_resource_group_name" {
   description = "build resource group name"
