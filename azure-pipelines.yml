@@ -13,18 +13,18 @@
 #       vmImage: ubuntu-latest
 
 #     jobs:
-      - job: whatifJob
-        displayName: WWADOD?
-        steps:
-            - checkout: self
-            - task: AzureCLI@2
-              displayName: "a la carte"
-              inputs:
-                  azureSubscription: ${{ parameters.avdSubServiceConnection }} 
-                  scriptType: 'bash'
-                  scriptLocation: 'inlineScript'
-                  inlineScript: |
-                    az account set -s ${{ parameters.avdSubscriptionId }};
+      # - job: whatifJob
+      #   displayName: WWADOD?
+      #   steps:
+      #       - checkout: self
+      #       - task: AzureCLI@2
+      #         displayName: "a la carte"
+      #         inputs:
+      #             azureSubscription: ${{ parameters.avdSubServiceConnection }} 
+      #             scriptType: 'bash'
+      #             scriptLocation: 'inlineScript'
+      #             inlineScript: |
+      #               az account set -s ${{ parameters.avdSubscriptionId }};
 #                     # az feature register --namespace Microsoft.Compute --name EncryptionAtHost;
 #                     # az provider register -n Microsoft.Compute;
 #                     # az feature show --namespace Microsoft.Compute --name EncryptionAtHost;
