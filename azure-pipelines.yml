@@ -81,10 +81,9 @@ pool:
 stages:
   - stage: runPacker
     jobs:
-          - job: whatifJob
+      - job: whatifJob
         displayName: WWADOD?
         steps:
-            - checkout: self
             - task: AzureCLI@2
               displayName: "a la carte"
               inputs:
