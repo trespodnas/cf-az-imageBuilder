@@ -13,18 +13,18 @@
 #       vmImage: ubuntu-latest
 
 #     jobs:
-#       - job: whatifJob
-#         displayName: WWADOD?
-#         steps:
-#             - checkout: self
-#             - task: AzureCLI@2
-#               displayName: "a la carte"
-#               inputs:
-#                   azureSubscription: ${{ parameters.avdSubServiceConnection }} 
-#                   scriptType: 'bash'
-#                   scriptLocation: 'inlineScript'
-#                   inlineScript: |
-#                     az account set -s ${{ parameters.avdSubscriptionId }};
+      - job: whatifJob
+        displayName: WWADOD?
+        steps:
+            - checkout: self
+            - task: AzureCLI@2
+              displayName: "a la carte"
+              inputs:
+                  azureSubscription: ${{ parameters.avdSubServiceConnection }} 
+                  scriptType: 'bash'
+                  scriptLocation: 'inlineScript'
+                  inlineScript: |
+                    az account set -s ${{ parameters.avdSubscriptionId }};
 #                     # az feature register --namespace Microsoft.Compute --name EncryptionAtHost;
 #                     # az provider register -n Microsoft.Compute;
 #                     # az feature show --namespace Microsoft.Compute --name EncryptionAtHost;
@@ -72,7 +72,7 @@ parameters:
     default: "cloudfitonline_avd_deployer"
   - name: avdSubscriptionId
     type: string
-    default: "rg-cf-avd-image-build"
+    default: "64774875-a7d4-46d8-9906-30cdc05f5bac"
 
 trigger:
 - main
@@ -81,6 +81,19 @@ pool:
 stages:
   - stage: runPacker
     jobs:
+          - job: whatifJob
+        displayName: WWADOD?
+        steps:
+            - checkout: self
+            - task: AzureCLI@2
+              displayName: "a la carte"
+              inputs:
+                  azureSubscription: ${{ parameters.avdSubServiceConnection }} 
+                  scriptType: 'bash'
+                  scriptLocation: 'inlineScript'
+                  inlineScript: |
+                    az account set -s ${{ parameters.avdSubscriptionId }};
+    
                 
       - job: createImage
         timeoutInMinutes: 120
