@@ -64,12 +64,12 @@ variable "image_sku" {
 variable "managed_image_name" {
   description = "managed image name"
   type        = string
-  default     = "win11-stig-and-fslogix"
+  default     = "win11-stig"
 }
 variable "managed_image_resource_group_name" {
   description = "managed image resource group name"
   type        = string
-  default     = "cfo-rg-sharedServices-compute-gallery"
+  default     = "rg-cf-avd-image-build"
 }
 variable "os_type" {
   description = "os type"
