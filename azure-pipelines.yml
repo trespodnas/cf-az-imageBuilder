@@ -1,35 +1,35 @@
-parameters:
-  - name: avdSubServiceConnection
-    type: string
-    default: "cloudfitonline_avd_deployer"
-  - name: avdSubscriptionId
-    type: string
-    default: "64774875-a7d4-46d8-9906-30cdc05f5bac"
-stages:
-  - stage: whatif
-    displayName: Deployment - What If?
+# parameters:
+#   - name: avdSubServiceConnection
+#     type: string
+#     default: "cloudfitonline_avd_deployer"
+#   - name: avdSubscriptionId
+#     type: string
+#     default: "64774875-a7d4-46d8-9906-30cdc05f5bac"
+# stages:
+#   - stage: whatif
+#     displayName: Deployment - What If?
 
-    pool: 
-      vmImage: ubuntu-latest
+#     pool: 
+#       vmImage: ubuntu-latest
 
-    jobs:
-      - job: whatifJob
-        displayName: WWADOD?
-        steps:
-            - checkout: self
-            - task: AzureCLI@2
-              displayName: "a la carte"
-              inputs:
-                  azureSubscription: ${{ parameters.avdSubServiceConnection }} 
-                  scriptType: 'bash'
-                  scriptLocation: 'inlineScript'
-                  inlineScript: |
-                    az account set -s ${{ parameters.avdSubscriptionId }};
-                    # az sig create --resource-group rg-cf-avd-image-build --gallery-name gaia_image_gallery
-                    az sig image-definition create --resource-group rg-cf-avd-image-build \
-                      --gallery-name gaia_image_gallery --gallery-image-definition avd-win11-stig \
-                      --publisher CloudFit --offer Windows --sku 11avdStigFslogix --hyper-v-generation V2 \
-                      --os-type windows --os-state Generalized
+#     jobs:
+#       - job: whatifJob
+#         displayName: WWADOD?
+#         steps:
+#             - checkout: self
+#             - task: AzureCLI@2
+#               displayName: "a la carte"
+#               inputs:
+#                   azureSubscription: ${{ parameters.avdSubServiceConnection }} 
+#                   scriptType: 'bash'
+#                   scriptLocation: 'inlineScript'
+#                   inlineScript: |
+#                     az account set -s ${{ parameters.avdSubscriptionId }};
+#                     # az sig create --resource-group rg-cf-avd-image-build --gallery-name gaia_image_gallery
+#                     az sig image-definition create --resource-group rg-cf-avd-image-build \
+#                       --gallery-name gaia_image_gallery --gallery-image-definition avd-win11-stig \
+#                       --publisher CloudFit --offer Windows --sku 11avdStigFslogix --hyper-v-generation V2 \
+#                       --os-type windows --os-state Generalized
 
 #                     # az feature register --namespace Microsoft.Compute --name EncryptionAtHost;
 #                     # az provider register -n Microsoft.Compute;
@@ -68,58 +68,58 @@ stages:
 #                     # az disk delete -y --name vm-cfoavd-rg-2_OsDisk_1_f8c27aaba624406c872cea24659f1581 --resource-group CFOAVD-RG-CFSGAIA-PROD
 
 
-# parameters:
-#   - name: avdSubServiceConnection
-#     type: string
-#     default: "cloudfitonline_avd_deployer"
-#   - name: avdSubscriptionId
-#     type: string
-#     default: "64774875-a7d4-46d8-9906-30cdc05f5bac"
+parameters:
+  - name: avdSubServiceConnection
+    type: string
+    default: "cloudfitonline_avd_deployer"
+  - name: avdSubscriptionId
+    type: string
+    default: "64774875-a7d4-46d8-9906-30cdc05f5bac"
 
-# trigger:
-# - main
-# pool:
-#   vmImage: ubuntu-latest
-# stages:
-#   - stage: runPacker
-#     jobs:
-#       - job: whatifJob
-#         displayName: WWADOD?
-#         steps:
-#             - task: AzureCLI@2
-#               displayName: "a la carte"
-#               inputs:
-#                   azureSubscription: ${{ parameters.avdSubServiceConnection }} 
-#                   scriptType: 'bash'
-#                   scriptLocation: 'inlineScript'
-#                   inlineScript: |
-#                     az account set -s ${{ parameters.avdSubscriptionId }};
+trigger:
+- main
+pool:
+  vmImage: ubuntu-latest
+stages:
+  - stage: runPacker
+    jobs:
+      - job: whatifJob
+        displayName: WWADOD?
+        steps:
+            - task: AzureCLI@2
+              displayName: "a la carte"
+              inputs:
+                  azureSubscription: ${{ parameters.avdSubServiceConnection }} 
+                  scriptType: 'bash'
+                  scriptLocation: 'inlineScript'
+                  inlineScript: |
+                    az account set -s ${{ parameters.avdSubscriptionId }};
     
                 
-#       - job: createImage
-#         timeoutInMinutes: 120
-#         steps:      
-#           - task: PackerTool@0
-#             displayName: 'install/use latest packer'
-#           - task: Packer@1
-#             displayName: 'packer init'
-#             inputs:
-#               connectedServiceType: azure
-#               azureSubscription: ${{ parameters.avdSubServiceConnection }}
-#               templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
-#               command: init
-#           - task: Packer@1
-#             displayName: 'packer validate'
-#             inputs:
-#               connectedServiceType: azure
-#               azureSubscription: ${{ parameters.avdSubServiceConnection }}
-#               templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
-#               command: validate
-#           - task: Packer@1
-#             displayName: 'packer build'
-#             inputs:
-#               connectedServiceType: azure
-#               azureSubscription: ${{ parameters.avdSubServiceConnection }}
-#               templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
-#               command: build
-#               force: true
+      - job: createImage
+        timeoutInMinutes: 120
+        steps:      
+          - task: PackerTool@0
+            displayName: 'install/use latest packer'
+          - task: Packer@1
+            displayName: 'packer init'
+            inputs:
+              connectedServiceType: azure
+              azureSubscription: ${{ parameters.avdSubServiceConnection }}
+              templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
+              command: init
+          - task: Packer@1
+            displayName: 'packer validate'
+            inputs:
+              connectedServiceType: azure
+              azureSubscription: ${{ parameters.avdSubServiceConnection }}
+              templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
+              command: validate
+          - task: Packer@1
+            displayName: 'packer build'
+            inputs:
+              connectedServiceType: azure
+              azureSubscription: ${{ parameters.avdSubServiceConnection }}
+              templatePath: $(Build.SourcesDirectory)/avd_win11_stig_fslogix.pkr.hcl
+              command: build
+              force: true
