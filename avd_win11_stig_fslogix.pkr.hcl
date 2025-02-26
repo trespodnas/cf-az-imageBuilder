@@ -77,7 +77,9 @@ source "azure-arm" "win11-build" {
   winrm_username                    = "packer"
 
   # Use user-assigned managed identity
-  client_id = "<your-user-assigned-managed-identity-client-id>"  # Specify the client ID of your user-assigned managed identity
+  user_assigned_managed_identities = [
+  ""
+  ]
 }
 
 build {
