@@ -93,6 +93,27 @@ build {
 
   provisioner "powershell" {
     inline = [
+      # Start the Windows Update service and make sure it's set to automatic
+      "Start-Service -Name wuauserv",
+      "Set-Service -Name wuauserv -StartupType Automatic",
+      "$updateSession = New-Object -ComObject Microsoft.Update.Session",
+      "$updateSearcher = $updateSession.CreateUpdateSearcher()",
+      "$searchResult = $updateSearcher.Search('IsInstalled=0')",
+      "$updatesToInstall = $searchResult.Updates",
+      "if ($updatesToInstall.Count -gt 0) {",
+      "    Write-Host 'Installing updates...'",
+      "    $updateInstaller = $updateSession.CreateUpdateInstaller()",
+      "    $updateInstaller.Updates = $updatesToInstall",
+      "    $installationResult = $updateInstaller.Install()",
+      "    Write-Host 'Installation completed. Result: $($installationResult.ResultCode)'",
+      "} else {",
+      "    Write-Host 'No updates are available.'",
+      "}"
+    ]
+  }
+
+  provisioner "powershell" {
+    inline = [
       "& $env:SystemRoot\\System32\\Sysprep\\Sysprep.exe /oobe /generalize /quiet /quit /mode:vm",
       "while($true) { $imageState = Get-ItemProperty HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Setup\\State | Select ImageState; if($imageState.ImageState -ne 'IMAGE_STATE_GENERALIZE_RESEAL_TO_OOBE') { Write-Output $imageState.ImageState; Start-Sleep -s 10  } else { break } }"
     ]
