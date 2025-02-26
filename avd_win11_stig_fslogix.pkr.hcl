@@ -16,10 +16,10 @@ variable "subscription_id" {
   description = "az subscription id"
   type        = string
 }
-variable "build_key_vault_name" {
-  description = "key vault name"
-  type        = string
-}
+# variable "build_key_vault_name" {
+#   description = "key vault name"
+#   type        = string
+# }
 variable "build_resource_group_name" {
   description = "build resource group name"
   type        = string
@@ -61,7 +61,7 @@ source "azure-arm" "win11-build" {
   }
   tenant_id                         = var.tenant_id
   subscription_id                   = var.subscription_id
-  build_key_vault_name              = var.build_key_vault_name
+  # build_key_vault_name              = var.build_key_vault_name
   build_resource_group_name         = var.build_resource_group_name
   communicator                      = "winrm"
   image_offer                       = var.image_offer
