@@ -82,7 +82,7 @@ source "azure-arm" "win11-build" {
 }
 
 build {
-  sources = ["source.win11-build"]
+  sources = ["source.azure-arm.win11-build"]
 
   provisioner "powershell" {
     inline = [
