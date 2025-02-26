@@ -55,13 +55,8 @@ variable "vm_size" {
 
 // Build section
 source "azure-arm" "win11-build" {
-  azure_tags = {
-    dept = "Engineering"
-    task = "Image deployment"
-  }
   tenant_id                         = var.tenant_id
   subscription_id                   = var.subscription_id
-  # build_key_vault_name              = var.build_key_vault_name
   build_resource_group_name         = var.build_resource_group_name
   communicator                      = "winrm"
   image_offer                       = var.image_offer
@@ -75,12 +70,11 @@ source "azure-arm" "win11-build" {
   winrm_insecure                    = false
   winrm_timeout                     = "5m"
   winrm_username                    = "packer"
-
-  # Use user-assigned managed identity
-  user_assigned_managed_identities = [
-  ""
+  user_assigned_managed_identities  = [
+    "id/path/here"
   ]
 }
+
 
 build {
   sources = ["source.azure-arm.win11-build"]
