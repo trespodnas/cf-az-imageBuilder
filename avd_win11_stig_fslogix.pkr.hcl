@@ -70,9 +70,17 @@ source "azure-arm" "win11-build" {
   winrm_insecure                    = false
   winrm_timeout                     = "5m"
   winrm_username                    = "packer"
-  user_assigned_managed_identities  = [
-    "id/path/here"
-  ]
+
+  managed_identity {
+    object_id = "your-managed-identity-object-id"
+  }
+
+  vnet_config {
+    resource_group_name = "myNetworkRG"
+    name                = "myVNet"
+    subnet_name         = "mySubnet"
+    use_private_link    = true
+  }
 }
 
 
